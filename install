@@ -78,7 +78,14 @@ func dots_languages() {
   ln -sfnv $SCRIPT_PATH"/dots/pip" ~/.config/pip
 }
 
-# call dots_base()
-# call dots_de()
-# call dots_tools()
-# call dots_languages()
+func dots_services() {
+  echo 'Setting up services'
+  mkdir -p ~/.config/systemd
+  ln -sfnv $SCRIPT_PATH"/services" ~/.config/systemd/user
+}
+
+call dots_base()
+call dots_de()
+call dots_tools()
+call dots_languages()
+call dots_services()

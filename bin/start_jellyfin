@@ -2,8 +2,6 @@
 
 set -x
 
-mkdir -p /tmp/pikpak/jellyfin
-
 JELLYFINDIR=$HOME"/Documents/self-hosted/Jellyfin"
 FFMPEG="/usr/lib/jellyfin-ffmpeg/ffmpeg"
 
