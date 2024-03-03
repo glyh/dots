@@ -78,7 +78,7 @@ func dots_languages() {
   ln -sfnv $SCRIPT_PATH"/dots/pip" ~/.config/pip
 }
 
-call dots_base()
-call dots_de()
-call dots_tools()
-call dots_languages()
+# call dots_base()
+# call dots_de()
+# call dots_tools()
+# call dots_languages()
