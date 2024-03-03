@@ -1,0 +1,84 @@
+#!/usr/bin/env ysh
+
+const SCRIPT_PATH = "$(realpath $0 | xargs dirname)"
+
+func installParu() {
+  rm -rf /tmp/paru-bin/
+  git clone https://aur.archlinux.org/paru-bin.git
+  cd paru-bin && makepkg -si --noconfirm
+}
+
+if ! pacman -Qi git {
+  echo 'git is required for dots to work, exiting'
+  exit 1
+}
+
+# if ! pacman -Qi paru-bin-fuck {
+#   # Installing paru
+#   cd /tmp && call installParu()
+# }
+
+func dots_neovim() {
+  echo 'Clearing neovim cache'
+  rm -rf ~/.local/share/nvim ~/.cache/nvim ~/.config/nvim
+  echo 'Downloading NvChad'
+  git clone https://github.com/NvChad/NvChad ~/.config/nvim
+  rm -rf ~/.config/nvim/lua/custom
+  ln -sfnv $SCRIPT_PATH"/dots/nvchad" ~/.config/nvim/lua/custom
+}
+
+func dots_base() {
+  echo 'Setting up base'
+  ln -sfnv $SCRIPT_PATH"/bin" ~/Binaries
+  ln -sfnv $SCRIPT_PATH"/dots/fish" ~/.config/fish
+  ln -sfnv $SCRIPT_PATH"/dots/git" ~/.config/git
+  ln -sfnv $SCRIPT_PATH"/dots/readline/.inputrc" ~/.inputrc
+  call dots_neovim()
+}
+
+func dots_electron() {
+  ln -sfnv $SCRIPT_PATH"/dots/electron-flags.conf" ~/.config/electron-flags.conf
+  ln -sfnv $SCRIPT_PATH"/dots/electron-flags.conf" ~/.config/electron12-flags.conf
+  ln -sfnv $SCRIPT_PATH"/dots/electron-flags.conf" ~/.config/electron13-flags.conf
+  ln -sfnv $SCRIPT_PATH"/dots/electron-flags.conf" ~/.config/chromium-flags.conf
+}
+
+func dots_kitty() {
+  ln -sfnv $SCRIPT_PATH"/dots/kitty" ~/.config/kitty
+}
+
+func dots_de() {
+  echo 'Setting up DE'
+  ln -sfnv $SCRIPT_PATH"/dots/xdg/mimeapps.list" ~/.config/mimeapps.list
+  ln -sfnv $SCRIPT_PATH"/dots/hyprland" ~/.config/hypr
+  ln -sfnv $SCRIPT_PATH"/dots/waybar" ~/.config/waybar
+  ln -sfnv $SCRIPT_PATH"/dots/mako" ~/.config/mako
+  ln -sfnv $SCRIPT_PATH"/dots/tofi" ~/.config/tofi
+  desktop-file-install --dir=$HOME/.local/share/applications $SCRIPT_PATH"/dots/applications"/*
+  call dots_electron()
+  call dots_kitty()
+}
+
+func dots_tools() {
+  echo 'Setting up tools'
+  ln -sfnv $SCRIPT_PATH"/dots/ranger" ~/.config/ranger
+  ln -sfnv $SCRIPT_PATH"/dots/tealdeer" ~/.config/tealdeer
+  ln -sfnv $SCRIPT_PATH"/dots/bat" ~/.config/bat
+  ln -sfnv $SCRIPT_PATH"/dots/starship" ~/.config/starship
+  ln -sfnv $SCRIPT_PATH"/dots/proxychains" ~/.proxychains
+  # TODO: call dots_aria2() #
+  # TODO: mpd
+  ln -sfnv $SCRIPT_PATH"/dots/zathura" ~/.config/zathura
+  ln -sfnv $SCRIPT_PATH"/dots/fcitx5" ~/.config/fcitx5
+}
+
+func dots_languages() {
+  echo 'Setting up languages'
+  ln -sfnv $SCRIPT_PATH"/dots/cargo/config.toml" ~/.config/cargo/config.toml
+  ln -sfnv $SCRIPT_PATH"/dots/pip" ~/.config/pip
+}
+
+call dots_base()
+call dots_de()
+call dots_tools()
+call dots_languages()

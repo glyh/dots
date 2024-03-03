@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -x
+
+mkdir -p /tmp/pikpak/jellyfin
+
+JELLYFINDIR=$HOME"/Documents/self-hosted/Jellyfin"
+FFMPEG="/usr/lib/jellyfin-ffmpeg/ffmpeg"
+
+/usr/lib/jellyfin/jellyfin \
+  -d $JELLYFINDIR/data \
+  -C $JELLYFINDIR/cache \
+  -c $JELLYFINDIR/config \
+  -l $JELLYFINDIR/log \
+  --ffmpeg $FFMPEG

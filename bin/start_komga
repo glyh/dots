@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -x
+
+komga --komga.config-dir=$HOME/Documents/self-hosted/Komga/config

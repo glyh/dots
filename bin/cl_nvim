@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+rm -rf ~/.local/share/nvim ~/.config/nvim/plugin ~/.cache/nvim ~/.local/state/nvim

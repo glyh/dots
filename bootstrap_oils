@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cd ./oils-for-unix/ && makepkg -si --noconfirm
