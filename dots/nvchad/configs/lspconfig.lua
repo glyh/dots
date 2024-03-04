@@ -7,7 +7,7 @@ local lspconfig = require 'lspconfig'
 local servers = { 
   'clangd', 'clojure_lsp', 'zls', 'gopls', 'ocamllsp', 
   'rust_analyzer', 'kotlin_language_server', 'pyright',
-  'nim_langserver'}
+  'nim_langserver', 'eslint', 'tsserver'}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
