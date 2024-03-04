@@ -85,11 +85,23 @@ func dots_tools() {
   ln -sfnv $SCRIPT_PATH"/dots/fcitx5" ~/.config/fcitx5
 }
 
+func dots_asdf(){
+  if ! pacman -Qi git {
+    paru -S asdf-vm --noconfirm
+  }
+  echo """
+    source /opt/asdf-vm/asdf.sh
+    asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+    asdf plugin add zig https://github.com/asdf-community/asdf-zig.git
+  """ | osh
+}
+
 func dots_languages() {
   echo 'Setting up languages'
   ln -sfnv $SCRIPT_PATH"/dots/cargo/config.toml" ~/.config/cargo/config.toml
   ln -sfnv $SCRIPT_PATH"/dots/pip" ~/.config/pip
   ln -sfnv $SCRIPT_PATH"/dots/bun/bunfig.toml" ~/.bunfig.toml
+  dots_asdf()
 }
 
 func dots_services() {
