@@ -89,6 +89,7 @@ func dots_languages() {
   echo 'Setting up languages'
   ln -sfnv $SCRIPT_PATH"/dots/cargo/config.toml" ~/.config/cargo/config.toml
   ln -sfnv $SCRIPT_PATH"/dots/pip" ~/.config/pip
+  ln -sfnv $SCRIPT_PATH"/dots/bun/bunfig.toml" ~/.bunfig.toml
 }
 
 func dots_services() {
