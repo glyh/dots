@@ -20,6 +20,7 @@ M.treesitter = {
     'kotlin',
 
     'nim',
+    'ruby',
 
     -- no crystal parser available
   },
