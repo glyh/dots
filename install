@@ -59,15 +59,28 @@ func dots_de() {
   call dots_kitty()
 }
 
+func dots_aria2() {
+  rm -rf ~/.aria2
+  git clone https://github.com/P3TERX/aria2.conf.git ~/.aria2
+  touch ~/.aria2/aria2.session
+  ln -sfnv $SCRIPT_PATH"/dots/aria2/aria2.conf" ~/.aria2/aria2.conf 
+}
+
+func dots_jellyfin() {
+  ln -sfnv $SCRIPT_PATH"/dots/javsp" ~/.config/javsp
+
+}
+
 func dots_tools() {
+  # TODO: mpd
   echo 'Setting up tools'
   ln -sfnv $SCRIPT_PATH"/dots/ranger" ~/.config/ranger
   ln -sfnv $SCRIPT_PATH"/dots/tealdeer" ~/.config/tealdeer
   ln -sfnv $SCRIPT_PATH"/dots/bat" ~/.config/bat
   ln -sfnv $SCRIPT_PATH"/dots/starship" ~/.config/starship
   ln -sfnv $SCRIPT_PATH"/dots/proxychains" ~/.proxychains
-  # TODO: call dots_aria2() #
-  # TODO: mpd
+  call dots_aria2()
+  call dots_jellyfin()
   ln -sfnv $SCRIPT_PATH"/dots/zathura" ~/.config/zathura
   ln -sfnv $SCRIPT_PATH"/dots/fcitx5" ~/.config/fcitx5
 }
