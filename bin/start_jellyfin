@@ -5,9 +5,9 @@ set -x
 JELLYFINDIR=$HOME"/Documents/self-hosted/Jellyfin"
 FFMPEG="/usr/lib/jellyfin-ffmpeg/ffmpeg"
 
-/usr/lib/jellyfin/jellyfin \
+exec /usr/lib/jellyfin/jellyfin \
   -d $JELLYFINDIR/data \
-  -C $JELLYFINDIR/cache \
+  -C ~/.cache/jellyfin \
   -c $JELLYFINDIR/config \
-  -l $JELLYFINDIR/log \
+  -l ~/.log/jellyfin \
   --ffmpeg $FFMPEG

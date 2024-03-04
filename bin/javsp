@@ -1,0 +1,5 @@
+#!/usr/bin/env osh
+
+cd ~/Documents/self-hosted/Jellyfin/tools/JavSP
+source venv/bin/activate 
+exec python ./JavSP.py --auto-exit --config ~/.config/javsp/config.ini
