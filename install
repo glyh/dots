@@ -114,7 +114,8 @@ func dots_languages() {
   ln -sfnv $SCRIPT_PATH"/dots/bun/bunfig.toml" ~/.bunfig.toml
 
   # Ruby 
-  ln -sfnv $SCRIPT_PATH"/dots/bundle" ~/.bundle
+  mkdir -p ~/.bundle
+  ln -sfnv $SCRIPT_PATH"/dots/bundle/config" ~/.bundle/config
 
   call dots_asdf()
 }
