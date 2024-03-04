@@ -27,13 +27,16 @@ func dots_neovim() {
   ln -sfnv $SCRIPT_PATH"/dots/nvchad" ~/.config/nvim/lua/custom
 }
 
+var skip_neovim = false
 func dots_base() {
   echo 'Setting up base'
   ln -sfnv $SCRIPT_PATH"/bin" ~/Binaries
   ln -sfnv $SCRIPT_PATH"/dots/fish" ~/.config/fish
   ln -sfnv $SCRIPT_PATH"/dots/git" ~/.config/git
   ln -sfnv $SCRIPT_PATH"/dots/readline/.inputrc" ~/.inputrc
-  call dots_neovim()
+  if not skip_neovim {
+    call dots_neovim()
+  }
 }
 
 func dots_electron() {
@@ -100,9 +103,19 @@ func dots_asdf(){
 
 func dots_languages() {
   echo 'Setting up languages'
+
+  # Rust
   ln -sfnv $SCRIPT_PATH"/dots/cargo/config.toml" ~/.config/cargo/config.toml
+
+  # Python
   ln -sfnv $SCRIPT_PATH"/dots/pip" ~/.config/pip
+
+  # TypeScript
   ln -sfnv $SCRIPT_PATH"/dots/bun/bunfig.toml" ~/.bunfig.toml
+
+  # Ruby 
+  ln -sfnv $SCRIPT_PATH"/dots/bundle" ~/.bundle
+
   call dots_asdf()
 }
 
@@ -112,7 +125,9 @@ func dots_services() {
   ln -sfnv $SCRIPT_PATH"/services" ~/.config/systemd/user
 }
 
-call dots_base()
+#if ARGV[1] == ''
+#echo @ARGV
+# call dots_base()
 call dots_de()
 call dots_tools()
 call dots_languages()
