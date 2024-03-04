@@ -45,3 +45,5 @@ style = "yellow"
 format = "[$virtualenv]($style) "
 style = "bright-black"
 
+[bun]
+symbol = "🥟"
