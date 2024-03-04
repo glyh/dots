@@ -89,11 +89,13 @@ func dots_asdf(){
   if ! pacman -Qi git {
     paru -S asdf-vm --noconfirm
   }
+  # osh not compatible with asdf yet 
   echo """
     source /opt/asdf-vm/asdf.sh
     asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
     asdf plugin add zig https://github.com/asdf-community/asdf-zig.git
-  """ | osh
+  """ | sh
+  ln -sfnv $SCRIPT_PATH"/dots/asdf/tool-versions" ~/.tool-versions
 }
 
 func dots_languages() {
@@ -101,7 +103,7 @@ func dots_languages() {
   ln -sfnv $SCRIPT_PATH"/dots/cargo/config.toml" ~/.config/cargo/config.toml
   ln -sfnv $SCRIPT_PATH"/dots/pip" ~/.config/pip
   ln -sfnv $SCRIPT_PATH"/dots/bun/bunfig.toml" ~/.bunfig.toml
-  dots_asdf()
+  call dots_asdf()
 }
 
 func dots_services() {
