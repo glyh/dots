@@ -97,6 +97,7 @@ func dots_asdf(){
     source /opt/asdf-vm/asdf.sh
     asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
     asdf plugin add zig https://github.com/asdf-community/asdf-zig.git
+    asdf plugin-add deno https://github.com/asdf-community/asdf-deno.git
   """ | sh
   ln -sfnv $SCRIPT_PATH"/dots/asdf/tool-versions" ~/.tool-versions
 }
