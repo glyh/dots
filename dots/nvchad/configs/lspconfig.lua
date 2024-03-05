@@ -4,10 +4,10 @@
 local lspconfig = require 'lspconfig'
 
 -- if you just want default config for the servers then put them in a table
-local servers = { 
-  'clangd', 'clojure_lsp', 'zls', 'gopls', 'ocamllsp', 
+local servers = {
+  'clangd', 'clojure_lsp', 'zls', 'gopls', 'ocamllsp',
   'rust_analyzer', 'kotlin_language_server', 'pyright',
-  'nim_langserver', 'eslint', 'tsserver'}
+  'nim_langserver', 'eslint', 'denols'}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {

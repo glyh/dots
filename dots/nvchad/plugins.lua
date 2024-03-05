@@ -54,9 +54,13 @@ local plugins = {
   { "folke/which-key.nvim",
     -- lazy = false,
     keys = { "<leader>", '"', "'", "`", "c", "v", ";" },
-    config = function(_, opts)
+    config = function()
       dofile(vim.g.base46_cache .. "whichkey")
-      require("which-key").setup(opts)
+      require("which-key").setup({
+        triggers_blacklist = {
+          t = { "<leader>" },
+        }
+      })
       require 'custom.configs.whichkey'
     end,
   },
