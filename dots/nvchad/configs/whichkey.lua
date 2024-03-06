@@ -26,7 +26,9 @@ wk.register({
   w = { name = 'window',
     v = { vsplit_new_file , 'New vertical split with a file' },
     s = { ssplit_new_file , 'New horizontal split with a file' },
-    t = { function() require("nvterm.terminal").new "vertical" end, 'New horizontal terminal' }
+    t = { function() require("nvterm.terminal").new "vertical" end, 'New horizontal terminal' },
+    f = { '<cmd>NvimTreeFocus<CR>', 'Focus NvimTree' },
+    g = { '<cmd>NvimTreeClose<CR>', 'Close NvimTree' }
   },
 
   b = {
