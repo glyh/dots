@@ -5,12 +5,12 @@ EnumerateWithTriggerKeys=True
 EnumerateSkipFirst=False
 
 [Hotkey/TriggerKeys]
-0=Control+space
+0=Alt+space
 1=Zenkaku_Hankaku
 2=Hangul
 
 [Hotkey/AltTriggerKeys]
-0=Shift_L
+0=Shift+Shift_L
 
 [Hotkey/EnumerateForwardKeys]
 0=Control+Shift_L
