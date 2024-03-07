@@ -57,6 +57,7 @@ func dots_de() {
   ln -sfnv $SCRIPT_PATH"/dots/waybar" ~/.config/waybar
   ln -sfnv $SCRIPT_PATH"/dots/mako" ~/.config/mako
   ln -sfnv $SCRIPT_PATH"/dots/tofi" ~/.config/tofi
+  ln -sfnv $SCRIPT_PATH"/dots/x/Xresources" ~/.Xresources
   desktop-file-install --dir=$HOME/.local/share/applications $SCRIPT_PATH"/dots/applications"/*
   call dots_electron()
   call dots_kitty()
@@ -127,9 +128,7 @@ func dots_services() {
   ln -sfnv $SCRIPT_PATH"/services" ~/.config/systemd/user
 }
 
-#if ARGV[1] == ''
-#echo @ARGV
-# call dots_base()
+call dots_base()
 call dots_de()
 call dots_tools()
 call dots_languages()
