@@ -7,6 +7,11 @@ set -x fish_cursor_replace_one underscore
 set -x fish_cursor_visual block
 set fish_vi_force_cursor
 
+# systemctl
+
+abbr --add suq systemctl --user status
+abbr --add sus systemctl --user start
+
 # Editor commands
 abbr --add e $EDITOR
 abbr --add vi $EDITOR

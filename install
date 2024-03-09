@@ -13,11 +13,6 @@ if ! pacman -Qi git {
   exit 1
 }
 
-# if ! pacman -Qi paru-bin-fuck {
-#   # Installing paru
-#   cd /tmp && call installParu()
-# }
-
 func dots_neovim() {
   echo 'Clearing neovim cache'
   rm -rf ~/.local/share/nvim ~/.cache/nvim ~/.config/nvim
@@ -95,6 +90,7 @@ func dots_asdf(){
     paru -S asdf-vm --noconfirm
   }
   # osh not compatible with asdf yet 
+  # https://github.com/oilshell/oil/issues/428#issuecomment-1986684491
   echo """
     source /opt/asdf-vm/asdf.sh
     asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
