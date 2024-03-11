@@ -2,12 +2,12 @@
 
 set -x
 
-JELLYFINDIR=$HOME"/Documents/self-hosted/Jellyfin"
+JELLYFINDIR=$HOME"/Documents/self-hosted/Jellyfin/backup"
 FFMPEG="/usr/lib/jellyfin-ffmpeg/ffmpeg"
 
-exec /usr/lib/jellyfin/jellyfin \
+exec /opt/jellyfin/dist/jellyfin \
   -d $JELLYFINDIR/data \
   -C ~/.cache/jellyfin \
   -c $JELLYFINDIR/config \
   -l ~/.log/jellyfin \
-  --ffmpeg $FFMPEG
+  --ffmpeg $FFMPEG \

@@ -15,7 +15,7 @@ abbr --add sus systemctl --user start
 # Editor commands
 abbr --add e $EDITOR
 abbr --add vi $EDITOR
-abbr --add pe "GITHUB=github.com proxychains4 $EDITOR"
+# abbr --add pe "GITHUB=github.com proxychains4 $EDITOR"
 abbr --add eu "nvim -u NONE"
 abbr --add er "sudoedit"
 # abbr --add ee "lvim ~/.config/lvim/config.lua" # editor
@@ -72,8 +72,7 @@ abbr --add ytdlx "yt-dlp -x"
 abbr --add ytdlxp "yt-dlp --proxy socks5://127.0.0.1:20170 -x"
 abbr --add mu "ncmpcpp"
 
-# Languages
-abbr --add p "proxychains4"
+abbr --add p "HTTPS_PROXY=http://127.0.0.1:20171 HTTP_PROXY=http://127.0.0.1:20171"
 
 abbr --add gacu "git add -A; git commit -m 'update'; git push"
 
