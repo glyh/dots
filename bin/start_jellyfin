@@ -2,7 +2,7 @@
 
 set -x
 
-JELLYFINDIR=$HOME"/Documents/self-hosted/Jellyfin/backup"
+JELLYFINDIR=$HOME"/Documents/self-hosted/Jellyfin"
 FFMPEG="/usr/lib/jellyfin-ffmpeg/ffmpeg"
 
 exec /opt/jellyfin/dist/jellyfin \

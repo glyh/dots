@@ -2,8 +2,7 @@
 Description=Rclone mounting Pikpak
 
 [Service]
-ExecStartPre=sh -c "rm -rf /tmp/pikpak/ && mkdir -p /tmp/pikpak/"
-ExecStart=rclone mount pikpak:rclone /tmp/pikpak \
+ExecStart=rclone mount pikpak:/ /mnt/pikpak \
       --allow-other \
       --buffer-size 256m \
       --dir-cache-time 720h \
@@ -11,7 +10,9 @@ ExecStart=rclone mount pikpak:rclone /tmp/pikpak \
       --log-level info \
       --vfs-read-chunk-size 128m \
       --vfs-read-chunk-size-limit off \
-      --vfs-cache-mode full
+      --vfs-cache-mode full \
+      --rc
+
 
 [Install]
 WantedBy=default.target
