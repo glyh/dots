@@ -7,20 +7,20 @@ local M = {}
 M.treesitter = {
   ensure_installed = {
     'c',
-    'clojure',
-    'haskell',
+    -- 'clojure',
+    -- 'haskell',
     'go',
     'lua',
 
-    'ocaml',
-    'ocamllex',
-    'ocaml_interface',
-    'menhir',
+    -- 'ocaml',
+    -- 'ocamllex',
+    -- 'ocaml_interface',
+    -- 'menhir',
 
-    'kotlin',
+    -- 'kotlin',
 
-    'nim',
-    'ruby',
+    -- 'nim',
+    -- 'ruby',
 
     -- no crystal parser available
   },

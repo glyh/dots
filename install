@@ -39,6 +39,7 @@ func dots_electron() {
   ln -sfnv $SCRIPT_PATH"/dots/electron-flags.conf" ~/.config/electron12-flags.conf
   ln -sfnv $SCRIPT_PATH"/dots/electron-flags.conf" ~/.config/electron13-flags.conf
   ln -sfnv $SCRIPT_PATH"/dots/electron-flags.conf" ~/.config/chromium-flags.conf
+  ln -sfnv $SCRIPT_PATH"/dots/chromium-flags.conf" ~/.config/chromium-flags.conf
   ln -sfnv $SCRIPT_PATH"/dots/thorium-flags.conf" ~/.config/thorium-flags.conf
 }
 

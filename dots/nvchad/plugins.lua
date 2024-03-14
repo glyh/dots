@@ -78,12 +78,12 @@ local plugins = {
                 alt = { 'FIXME', 'BUG', 'FIXIT', 'ISSUE' }, -- a set of other keywords that all map to this FIX keywords
                 -- signs = false, -- configure signs for some keywords individually
             },
-            TODO = { icon = ' ', color = 'info' },
-            OK = { icon = ' ', color = 'info' },
-            HACK = { icon = ' ', color = 'warning' },
+            TODO = { icon = ' ', color = 'info' },
+            OK = { icon = '󰩐 ', color = 'info' },
+            HACK = { icon = '󰠥 ', color = 'warning' },
             WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX', 'ERROR' } },
-            PERF = { icon = ' ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
-            NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
+            PERF = { icon = '󱎫 ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
+            NOTE = { icon = '󰹕 ', color = 'hint', alt = { 'INFO' } },
         },
 
       }
@@ -311,12 +311,13 @@ local plugins = {
 
   -- }}}
 
-  -- Fuck go: parser generator hard to use
+  -- Why not Go: parser generator hard to use
   -- Go {{
   -- { 'fatih/vim-go', ft = 'go' },
   -- }}
 
-  -- Fuck Crystal: shitty ADT support
+  -- Why not Crystal: shitty ADT support
+  -- No libraries, hard to write c++ bindings
   -- Crystal {{
   -- { 'jlcrochet/vim-crystal', ft = 'crystal' },
   -- }}
