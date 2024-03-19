@@ -211,6 +211,7 @@ local plugins = {
   -- },
   { 'julienvincent/nvim-paredit',
     ft = lisps,
+    enabled = false,
     config = function()
       require("nvim-paredit").setup()
     end
@@ -219,8 +220,7 @@ local plugins = {
   -- Clojure & Conjure {{{
   { 'Olical/conjure',
     -- ft = lisps,
-    lazy = false,
-    -- enabled = false,
+    enabled = false,
     config = function()
         vim.g['conjure#log#hud#border'] = 'none'
         vim.g['conjure#extract#tree_sitter#enabled'] = true
@@ -260,7 +260,7 @@ local plugins = {
     end,
   },
   { 'PaterJason/cmp-conjure',
-    -- enabled = false,
+    enabled = false,
     dependencies = {'nvim-cmp', 'conjure'} },
   -- }}}
 
@@ -420,13 +420,14 @@ local plugins = {
   -- Typst {{{
   {
     'kaarmu/typst.vim',
+    enabled = false,
     ft = 'typst',
     lazy=false,
   },
   -- }}}
 
-  { 'lervag/vimtex', 
-    ft='tex', 
+  { 'lervag/vimtex',
+    ft='tex',
     config = function()
       vim.g.vimtex_view_method = 'zathura'
     end
