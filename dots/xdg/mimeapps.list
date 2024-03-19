@@ -8,3 +8,4 @@ x-scheme-handler/http=thorium-browser.desktop
 x-scheme-handler/https=thorium-browser.desktop
 x-scheme-handler/about=thorium-browser.desktop
 x-scheme-handler/unknown=thorium-browser.desktop
+x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
