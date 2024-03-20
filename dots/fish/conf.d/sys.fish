@@ -1,5 +1,5 @@
 # Basic info
-set -gx GITHUB               git.homegu.com
+set -gx GITHUB               github.hscsec.cn
 # See https://coderschool.cn/3724.html
 
 # Nvidia Drivers
