@@ -21,14 +21,17 @@ fcitx5-configtool
 fcitx5-gtk
 fcitx5-pinyin-custom-pinyin-dictionary
 fcitx5-qt
-firefox
 fish
 fzf
 gammastep
 gimp
 git
 git-delta
+git-lfs
 go
+gocryptfs
+gopass
+gopass-jsonapi
 grim
 grub
 hyprland
@@ -45,6 +48,7 @@ lxsession
 mako
 man-db
 man-pages
+mercury-browser-bin
 mpd
 neovim
 networkmanager
