@@ -21,6 +21,10 @@ func dots_base() {
   ln -sfnv $SCRIPT_PATH"/dots/git" ~/.config/git
   ln -sfnv $SCRIPT_PATH"/dots/readline/.inputrc" ~/.inputrc
   ln -sfnv $SCRIPT_PATH"/dots/neovim" ~/.config/nvim
+
+  mkdir -p ~/.local/share/gopass
+  ln -sfnv $SCRIPT_PATH"/encrypted/gopass/stores" ~/.local/share/gopass/stores
+  ln -sfnv $SCRIPT_PATH"/dots/gopass" ~/.config/gopass
 }
 
 func dots_electron() {

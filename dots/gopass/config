@@ -1,0 +1,4 @@
+[mounts]
+	path = /home/lyh/.local/share/gopass/stores/root
+[recipients]
+	hash = 942b5feaa9673d3e10cbe726f33cb0713a75eff826de3bee4094a48bcc155c97
