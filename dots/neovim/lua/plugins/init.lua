@@ -188,7 +188,7 @@ return {
       require('which-key').register({
         ['p'] = { '<cmd>MarkdownPreviewToggle<CR>', 'Toggle markdown preview'}
       }, { prefix = '<localleader>' })
-      vim.g.mkdp_browser = 'qutebrowser'
+      vim.g.mkdp_browser = 'firefox'
       vim.g.mkdp_theme = 'dark'
     end,
     ft = 'markdown'

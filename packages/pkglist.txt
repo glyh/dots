@@ -83,7 +83,6 @@ tk
 tofi
 tree
 ttf-firacode-nerd
-typora-free-bin
 udiskie
 unzip
 uuplugin-bin
