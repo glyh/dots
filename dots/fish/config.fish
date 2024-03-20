@@ -77,10 +77,4 @@ abbr --add p "HTTPS_PROXY=http://127.0.0.1:20171 HTTP_PROXY=http://127.0.0.1:201
 abbr --add gacu "git add -A; git commit -m 'update'; git push"
 
 abbr --add rcr  "rclone rc vfs/refresh recursive=true"
-
-# opam configuration
-source /home/lyh/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
-
-function snap
-  sudo bcachefs subvolume snapshot -r / /snapshots/(date +%Y.%m.%d)
-end
+abbr --add snap "sudo bcachefs subvolume snapshot -r / /snapshots/(date +%Y.%m.%d)"
