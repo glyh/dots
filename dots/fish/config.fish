@@ -77,4 +77,5 @@ abbr --add p "HTTPS_PROXY=http://127.0.0.1:20171 HTTP_PROXY=http://127.0.0.1:201
 abbr --add gacu "git add -A; git commit -m 'update'; git push"
 
 abbr --add rcr  "rclone rc vfs/refresh recursive=true"
-abbr --add snap "sudo bcachefs subvolume snapshot -r / /snapshots/(date +%Y.%m.%d)"
+abbr --add dosnap "sudo bcachefs subvolume snapshot -r / /snapshots/(date +%Y.%m.%d)"
+abbr --add rmsnap "sudo bcachefs subvolume delete /snapshots/(date +%Y.%m.%d)"
