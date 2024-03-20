@@ -125,17 +125,22 @@ local plugins = {
       { 'i', mode = { 'x', 'o' } },
     },
   },
-  { 'phaazon/hop.nvim',
+  { 'ggandor/leap.nvim',
     keys = {
-      { 'f', '<cmd>HopChar2<CR>', noremap = true, mode = {'n', 'v', 'o'} },
-      { 'F', function()
-        require('hop').hint_patterns({ case_insensitive = false })
-      end, noremap = true, mode = {'n', 'v', 'o'} },
+      { 'f', '<Plug>(leap)', noremap = true, mode = {'n', 'v', 'o'} },
     },
-    config = function()
-      require('hop').setup { keys = 'fhdjskalgryeuwiqot' }
-    end
   },
+  -- { 'phaazon/hop.nvim',
+  --   keys = {
+  --     { 'f', '<cmd>HopChar2<CR>', noremap = true, mode = {'n', 'v', 'o'} },
+  --     { 'F', function()
+  --       require('hop').hint_patterns({ case_insensitive = false })
+  --     end, noremap = true, mode = {'n', 'v', 'o'} },
+  --   },
+  --   config = function()
+  --     require('hop').setup { keys = 'fhdjskalgryeuwiqot' }
+  --   end
+  -- },
   { 'tpope/vim-sleuth', lazy = false },
   { 'tpope/vim-repeat', keys = '.' },
   -- }}}
