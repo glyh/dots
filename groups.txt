@@ -1,0 +1,2 @@
+video # light
+wheel # sudo
