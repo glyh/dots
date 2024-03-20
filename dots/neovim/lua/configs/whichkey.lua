@@ -1,11 +1,19 @@
+require 'nvchad.mappings'
+
 local wk = require('which-key')
+
+require('which-key').setup({
+  triggers_blacklist = {
+    t = { '<leader>' },
+  }
+})
 
 wk.register({
   [';'] = {':', 'Enter command mode', opts = { nowait = true }},
 }, {})
 
 wk.register({
-  hp = { 'help' , 'Ask for help' },
+  hp = { 'vert help' , 'Ask for help' },
 }, { mode = 'c' })
 
 local function vsplit_new_file()
@@ -26,7 +34,7 @@ wk.register({
   w = { name = 'window',
     v = { vsplit_new_file , 'New vertical split with a file' },
     s = { ssplit_new_file , 'New horizontal split with a file' },
-    t = { function() require("nvterm.terminal").new "vertical" end, 'New horizontal terminal' },
+    t = { function() require('nvterm.terminal').new 'vertical' end, 'New horizontal terminal' },
     f = { '<cmd>NvimTreeFocus<CR>', 'Focus NvimTree' },
     g = { '<cmd>NvimTreeClose<CR>', 'Close NvimTree' }
   },
@@ -42,7 +50,7 @@ wk.register({
 
   m = {
     name = 'make',
-    r = {function() require('overseer').run_template {prompt = "always"} end, 'Run an overseer template' },
+    r = {function() require('overseer').run_template {prompt = 'always'} end, 'Run an overseer template' },
     t = {function() require('overseer').toggle() end, 'Run an overseer command' },
   },
 
@@ -55,7 +63,7 @@ wk.register({
     f = { '<Cmd>Telescope find_files<CR>', 'Find files' },
     k = { '<Cmd>Telescope marks<CR>', 'Find bookmarks' },
     b = { function() require('reach').buffers() end, 'Find buffers' },
-    u = { '<Cmd>NvChadUpdate<CR>' , 'Update NvChad' },
+    u = { '<Cmd>Lazy update<CR>' , 'Update NvChad' },
     l = { '<Cmd>Lazy<CR>' , 'Show Lazy' },
     m = { '<Cmd>Mason<CR>' , 'Show Mason' },
   },
@@ -81,6 +89,6 @@ wk.register({
 
 local fmt = string.format
 for key, direction in pairs({h = 'left', j = 'down', k = 'right', l = 'up'}) do
-  wk.register({ [key] = { fmt('<C-w>%s', key), "Switch to window on the " .. direction }}, {prefix = '<leader>w'})
-  wk.register({ [key] = { fmt([[<C-\><C-N><C-w>%s]], key), "Switch to window on the " .. direction }}, {prefix = '<leader>w', mode = 't' })
+  wk.register({ [key] = { fmt('<C-w>%s', key), 'Switch to window on the ' .. direction }}, {prefix = '<leader>w'})
+  wk.register({ [key] = { fmt([[<C-\><C-N><C-w>%s]], key), 'Switch to window on the ' .. direction }}, {prefix = '<leader>w', mode = 't' })
 end

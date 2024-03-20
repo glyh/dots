@@ -13,25 +13,14 @@ if ! pacman -Qi git {
   exit 1
 }
 
-func dots_neovim() {
-  echo 'Clearing neovim cache'
-  rm -rf ~/.local/share/nvim ~/.cache/nvim ~/.config/nvim
-  echo 'Downloading NvChad'
-  git clone https://github.com/NvChad/NvChad ~/.config/nvim
-  rm -rf ~/.config/nvim/lua/custom
-  ln -sfnv $SCRIPT_PATH"/dots/nvchad" ~/.config/nvim/lua/custom
-}
-
-var skip_neovim = false
 func dots_base() {
   echo 'Setting up base'
+  mkdir -p ~/.config/{fish,git}
   ln -sfnv $SCRIPT_PATH"/bin" ~/Binaries
   ln -sfnv $SCRIPT_PATH"/dots/fish" ~/.config/fish
   ln -sfnv $SCRIPT_PATH"/dots/git" ~/.config/git
   ln -sfnv $SCRIPT_PATH"/dots/readline/.inputrc" ~/.inputrc
-  if not skip_neovim {
-    call dots_neovim()
-  }
+  ln -sfnv $SCRIPT_PATH"/dots/neovim" ~/.config/nvim
 }
 
 func dots_electron() {
@@ -49,6 +38,7 @@ func dots_kitty() {
 
 func dots_de() {
   echo 'Setting up DE'
+  mkdir -p ~/.config/{hypr,waybar,mako,tofi}
   ln -sfnv $SCRIPT_PATH"/dots/xdg/mimeapps.list" ~/.config/mimeapps.list
   ln -sfnv $SCRIPT_PATH"/dots/hyprland" ~/.config/hypr
   ln -sfnv $SCRIPT_PATH"/dots/waybar" ~/.config/waybar
@@ -56,7 +46,7 @@ func dots_de() {
   ln -sfnv $SCRIPT_PATH"/dots/tofi" ~/.config/tofi
   ln -sfnv $SCRIPT_PATH"/dots/x/Xresources" ~/.Xresources
   desktop-file-install --dir=$HOME/.local/share/applications $SCRIPT_PATH"/dots/applications"/*
-  call dots_electron()
+  # call dots_electron()
   call dots_kitty()
 }
 
@@ -69,12 +59,12 @@ func dots_aria2() {
 
 func dots_jellyfin() {
   ln -sfnv $SCRIPT_PATH"/dots/javsp" ~/.config/javsp
-
 }
 
 func dots_tools() {
   # TODO: mpd
   echo 'Setting up tools'
+  mkdir -p ~/.config/{ranger,tealdeer,bat,starship,zathura,fcitx5}
   ln -sfnv $SCRIPT_PATH"/dots/ranger" ~/.config/ranger
   ln -sfnv $SCRIPT_PATH"/dots/tealdeer" ~/.config/tealdeer
   ln -sfnv $SCRIPT_PATH"/dots/bat" ~/.config/bat
@@ -94,9 +84,7 @@ func dots_asdf(){
   # https://github.com/oilshell/oil/issues/428#issuecomment-1986684491
   echo """
     source /opt/asdf-vm/asdf.sh
-    asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
     asdf plugin add zig https://github.com/asdf-community/asdf-zig.git
-    asdf plugin-add deno https://github.com/asdf-community/asdf-deno.git
   """ | sh
   ln -sfnv $SCRIPT_PATH"/dots/asdf/tool-versions" ~/.tool-versions
 }
@@ -105,6 +93,7 @@ func dots_languages() {
   echo 'Setting up languages'
 
   # Rust
+  mkdir -p ~/.config/cargo
   ln -sfnv $SCRIPT_PATH"/dots/cargo/config.toml" ~/.config/cargo/config.toml
 
   # Python
@@ -126,6 +115,7 @@ func dots_services() {
   ln -sfnv $SCRIPT_PATH"/services" ~/.config/systemd/user
 }
 
+mkdir -p ~/.config
 call dots_base()
 call dots_de()
 call dots_tools()
