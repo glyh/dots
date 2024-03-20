@@ -1,0 +1,13 @@
+#!/usr/bin/env ysh
+
+const dots_root = "$(cat ~/.where_is_dot)"
+echo $dots_root
+
+if mountpoint ~/.mercury {
+  umount ~/.mercury
+} else {
+  mkdir -p ~/.mercury
+  rm -rf ~/.mercury/*
+}
+
+gocryptfs $dots_root/encrypted/mercury/mercury ~/.mercury/ -extpass "gopass show -o mercury_gocryptfs"
