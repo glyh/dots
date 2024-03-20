@@ -7,7 +7,6 @@ atool
 base
 base-devel
 bcachefs-tools
-bottles
 bottom
 choosenim-bin
 cuda
@@ -29,10 +28,10 @@ gimp
 git
 git-delta
 go
-gopls
 grim
 grub
 hyprland
+intel-ucode
 jellyfin-ffmpeg
 jellyfin-media-player
 kitty
@@ -48,7 +47,6 @@ man-pages
 mpd
 neovim
 networkmanager
-nodejs
 noto-fonts-emoji
 ntfs-3g
 nvidia
@@ -67,7 +65,6 @@ progress
 proton-ge-custom-bin
 proxychains-ng
 pulseaudio
-pyright
 python-pillow
 qt5-wayland
 ranger
@@ -80,11 +77,11 @@ sddm
 slurp
 starship
 steam
+sudo
 tealdeer
 tk
 tofi
 tree
-tree-sitter-cli
 ttf-firacode-nerd
 typora-free-bin
 udiskie

@@ -115,6 +115,19 @@ func dots_services() {
   ln -sfnv $SCRIPT_PATH"/services" ~/.config/systemd/user
 }
 
+func dots_etc() {
+  echo 'Setting up etc'
+  var etc_configs = split("$(find $SCRIPT_PATH/etc -type f)")
+  for source_path in (etc_configs) {
+    var relative_path = "$(realpath -s --relative-to=$SCRIPT_PATH/etc $source_path)"
+    var destination_path = "/etc/$relative_path"
+    sudo rm $destination_path
+    sudo ln -sfnv $source_path $destination_path
+  }
+}
+
+call dots_etc()
+
 mkdir -p ~/.config
 call dots_base()
 call dots_de()
