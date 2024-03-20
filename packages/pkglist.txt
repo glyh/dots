@@ -7,6 +7,7 @@ atool
 base
 base-devel
 bcachefs-tools
+bottles
 bottom
 choosenim-bin
 cuda

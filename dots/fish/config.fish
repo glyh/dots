@@ -72,11 +72,12 @@ abbr --add ytdlx "yt-dlp -x"
 abbr --add ytdlxp "yt-dlp --proxy socks5://127.0.0.1:20170 -x"
 abbr --add mu "ncmpcpp"
 
-abbr --add p "HTTPS_PROXY=http://127.0.0.1:20171 HTTP_PROXY=http://127.0.0.1:20171"
+# abbr --add p "HTTPS_PROXY=http://127.0.0.1:20171 HTTP_PROXY=http://127.0.0.1:20171"
+abbr --add p "proxychains -q"
 
 abbr --add gacu "git add -A; git commit -m 'update'; git push"
 
 abbr --add rcr  "rclone rc vfs/refresh recursive=true"
-abbr --add dosnap "sudo bcachefs subvolume snapshot -r /home/lyh /snapshots/user/(date +%Y.%m.%d)"
+abbr --add dosnap "sudo bcachefs subvolume snapshot -r /home/lyh/Documents/ /snapshots/user/(date +%Y.%m.%d)"
 abbr --add rmsnap "sudo bcachefs subvolume delete /snapshots/user/(date +%Y.%m.%d)"
 abbr --add --position anywhere cpy " | wl-copy"
