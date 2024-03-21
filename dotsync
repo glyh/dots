@@ -79,12 +79,8 @@ proc dotsAria2() {
   }
   rm ~/.aria2/aria2.conf
   ln -sfnv $dotPath/dots/aria2/aria2.conf ~/.aria2/aria2.conf 
-  cd ~/.aria2 {
-    rm ./aria2.conf
-    ln -sfnv $dotPath/dots/aria2/aria2.conf ./aria2.conf 
-    touch aria2.session
-    ./tracker.sh
-  }
+  touch ~/.aria2/aria2.session
+  ~/.aria2/tracker.sh ./dots/aria2/aria2.conf
 }
 
 proc dotsJellyfin() {
@@ -99,14 +95,18 @@ proc dotsTools() {
   ln -sfnv $dotPath/dots/bat ~/.config/bat
   ln -sfnv $dotPath/dots/starship ~/.config/starship
   ln -sfnv $dotPath/dots/proxychains ~/.proxychains
-  dotsAria2
+  # dotsAria2
   dotsJellyfin
   ln -sfnv $dotPath/dots/zathura ~/.config/zathura
   ln -sfnv $dotPath/dots/fcitx5 ~/.config/fcitx5
 }
 
+proc dotsMise() {
+  ln -sfnv $dotPath/dots/mise ~/.config/mise
+  mise install
+}
+
 proc dotsAsdf(){
-  # ensureAUR asdf-vm
   # osh not compatible with asdf yet 
   # https://github.com/oilshell/oil/issues/428#issuecomment-1986684491
   echo """
@@ -144,7 +144,7 @@ proc dotsServices() {
 
 proc dotsEtc() {
   echo 'Setting up etc'
-  var etc_configs = split("$(find $dotPath/sys/etc -type f)")
+  var etc_configs = split("$(find $dotPath/etc -type f)")
   for source_path in (etc_configs) {
     var relative_path = "$(realpath -s --relative-to=$dotPath/etc $source_path)"
     var destination_path = "/etc/$relative_path"
