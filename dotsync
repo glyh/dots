@@ -2,6 +2,13 @@
 
 const dotPath = "$(realpath $0 | xargs dirname)"
 
+proc ensurePacman(package) {
+  echo "Ensuring package $package is installed"
+  if ! pacman -Qi $package > /dev/null {
+    sudo pacman -S --noconfirm $package
+  }
+}
+
 proc ensureAUR(package) {
   echo "Ensuring AUR package $package is installed"
   if ! pacman -Qi $package > /dev/null {
@@ -95,7 +102,7 @@ proc dotsTools() {
   ln -sfnv $dotPath/dots/bat ~/.config/bat
   ln -sfnv $dotPath/dots/starship ~/.config/starship
   ln -sfnv $dotPath/dots/proxychains ~/.proxychains
-  # dotsAria2
+  dotsAria2
   dotsJellyfin
   ln -sfnv $dotPath/dots/zathura ~/.config/zathura
   ln -sfnv $dotPath/dots/fcitx5 ~/.config/fcitx5
@@ -112,16 +119,30 @@ proc dotsAsdf(){
   echo """
     source /opt/asdf-vm/asdf.sh
     asdf plugin add zig https://github.com/asdf-community/asdf-zig.git
+
+    asdf install zig
+    asdf install ruby
   """ | sh
   ln -sfnv $dotPath/dots/asdf/tool-versions ~/.tool-versions
 }
 
+proc dotsRust() {
+  ensurePacman rustup
+  ensurePacman clang
+  ensurePacman mold
+  mkdir -p ~/.cargo
+  ln -sfnv $dotPath/dots/cargo/config.toml ~/.cargo/config.toml
+  try {
+    rustup show active-toolchain | grep stable-x86_64 > /dev/null
+  }
+  if (_status !== 0) {
+    rustup toolchain install stable
+  }
+  rustup default stable
+}
+
 proc dotsLanguages() {
   echo 'Setting up languages'
-
-  # Rust
-  mkdir -p ~/.config/cargo
-  ln -sfnv $dotPath/dots/cargo/config.toml ~/.config/cargo/config.toml
 
   # Python
   ln -sfnv $dotPath/dots/pip ~/.config/pip
@@ -129,11 +150,18 @@ proc dotsLanguages() {
   # TypeScript
   ln -sfnv $dotPath/dots/bun/bunfig.toml ~/.bunfig.toml
 
-  # Ruby 
+  # Ruby, depends on rust 
   mkdir -p ~/.bundle
   ln -sfnv $dotPath/dots/bundle/config ~/.bundle/config
+  try {
+    # frum panics if ruby is already installed
+    frum --ruby-build-mirror=https://cache.ruby-china.com/pub/ruby install 3.3.0
+  }
+  frum global 3.3.0
 
-  dotsAsdf
+  # Zig 
+  # zvm install reinstalls everytime, this is better
+  yes | zvm use 0.11.0
 }
 
 proc dotsServices() {
@@ -160,6 +188,8 @@ proc addGroups() {
 
 cd $dotPath {
   ensureAUR yay-bin
+  dotsRust # some packages depends on rust
+
   syncPkgListWithYay
 
   addGroups

@@ -2,7 +2,6 @@ adobe-source-han-sans-cn-fonts
 adobe-source-han-serif-cn-fonts
 aria2
 ariang-allinone-bin
-asdf-vm
 atool
 base
 base-devel
@@ -102,3 +101,7 @@ yay-bin
 zathura
 zathura-pdf-mupdf
 zoxide
+zvm
+frum-bin
+mold
+clang
