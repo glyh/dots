@@ -50,12 +50,12 @@ func dots_firefox() {
     git clone git@github.com:glyh/mercury_encrypted.git encrypted/mercury
   }
   if mountpoint ~/.mercury {
-    umount ~/.mercury
+    echo "Mercury profile is around mounted, skipping"
   } else {
     mkdir -p ~/.mercury
     rm -rf ~/.mercury/*
+    gocryptfs $target_dir/mercury ~/.mercury/ -extpass "gopass show -o mercury_gocryptfs"
   }
-  gocryptfs $target_dir/mercury ~/.mercury/ -extpass "gopass show -o mercury_gocryptfs"
 }
 
 func dots_de() {

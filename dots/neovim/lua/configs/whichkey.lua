@@ -2,14 +2,14 @@ require 'nvchad.mappings'
 
 local wk = require('which-key')
 
-require('which-key').setup({
+wk.setup({
   triggers_blacklist = {
     t = { '<leader>' },
   }
 })
 
 wk.register({
-  [';'] = {':', 'Enter command mode', opts = { nowait = true }},
+  [';'] = {':', 'Enter command mode', opts = {  }},
 }, {})
 
 wk.register({

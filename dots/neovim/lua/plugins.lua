@@ -19,20 +19,6 @@ return {
     end,
     dependencies = 'hrsh7th/cmp-cmdline'
   },
-  { 'nvim-telescope/telescope.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-ui-select.nvim',
-    },
-    opts = {
-      extensions_list = { 'themes', 'terms', 'ui-select', 'projects' },
-    }
-  },
-  { 'nvim-telescope/telescope-ui-select.nvim',
-    config = function()
-      require('telescope').load_extension('ui-select')
-    end
-  },
   {
     'stevearc/conform.nvim',
     -- event = 'BufWritePre' -- uncomment for format on save
@@ -57,39 +43,76 @@ return {
   },
 
   {
-  	'williamboman/mason.nvim',
-  	opts = {
-  		ensure_installed = {
-        -- lua stuff
-        'lua-language-server',
-        'stylua',
-        -- c/cpp stuff
-        'clangd',
-        'clang-format',
-        -- clojure stuff,
-        'clj-kondo',
-        'clojure-lsp',
-        -- zig
-        'zls',
-        -- go 
-        'gopls',
-  		},
-  	},
+    'williamboman/mason.nvim',
   },
 
-  {
-  	'nvim-treesitter/nvim-treesitter',
-  	opts = {
-  		ensure_installed = {
-  			'c', 'go', 'lua',
-  		},
-  	},
-  },
+  { 'whoissethdaniel/mason-tool-installer.nvim',
+    lazy = false,
+    config = function()
+      require('mason-tool-installer').setup {
+        -- a list of all tools you want to ensure are installed upon
+        -- start
+        ensure_installed = {
+          -- lua stuff
+          'lua-language-server',
+          'stylua',
+          -- c/cpp stuff
+          'clangd',
+          'clang-format',
+          -- clojure stuff,
+          'clj-kondo',
+          'clojure-lsp',
+          -- zig
+          'zls',
+          -- go 
+          'gopls',
+          -- typst
+          'typst-lsp'
+        },
 
+        auto_update = false,
+        run_on_start = true,
+        start_delay = 3000,
+        debounce_hours = 5,
+      }
+    end
+  },
+  { 'nvim-treesitter/nvim-treesitter',
+    opts = {
+      ensure_installed = {
+        'c', 'go', 'lua',
+      },
+    },
+  },
   { 'nvim-tree/nvim-tree.lua',
     cmd = {'NvimTreeFocus', 'NvimTreeClose'},
   },
 
+  { 'mfussenegger/nvim-dap',
+    config = function() require 'configs.dap' end,
+  },
+
+
+  { 'stevearc/overseer.nvim',
+    enabled = false,
+    config = function()
+      require('overseer').setup({
+        templates = { 'builtin'},
+      })
+    end
+  },
+
+  { 'ahmedkhalf/project.nvim',
+    -- BUG: project.nvim doesn't run well if we lazy load it
+    enabled = false,
+    config = function()
+      require('project_nvim').setup{
+        patterns = { '.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json', 'project.clj', 'build.zig' },
+      }
+    end
+  },
+  -- }}}
+  -- UI {{{
   { 'folke/which-key.nvim',
     keys = { '<leader>', '"', "'", '`', 'c', 'v', ';' },
     config = function()
@@ -121,23 +144,13 @@ return {
       },
     }
   },
-  { 'mfussenegger/nvim-dap',
-    config = function() require 'custom.configs.dap' end,
-  },
-
   { 'folke/trouble.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     cmd = 'TroubleToggle',
   },
-
-  { 'stevearc/overseer.nvim',
-    config = function()
-      require('overseer').setup({
-        templates = { 'builtin' },
-      })
-    end
+  { 'stevearc/dressing.nvim',
+    opts = {},
   },
-
   { 'toppair/reach.nvim',
     dependencies = 'nvim-web-devicons',
     config = function()
@@ -146,13 +159,18 @@ return {
       })
     end
   },
-  { 'ahmedkhalf/project.nvim',
-    -- BUG: project.nvim doesn't run well if we lazy load it
-    lazy = false,
+  { 'nvim-telescope/telescope.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
+    },
+    opts = {
+      extensions_list = { 'themes', 'terms', 'ui-select', 'projects' },
+    }
+  },
+  { 'nvim-telescope/telescope-ui-select.nvim',
     config = function()
-      require('project_nvim').setup{
-        patterns = { '.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json', 'project.clj', 'build.zig' },
-      }
+      require('telescope').load_extension('ui-select')
     end
   },
   -- }}}
@@ -179,7 +197,7 @@ return {
   { 'tpope/vim-repeat', keys = '.' },
 
   -- }}}
-  -- Markdown {{{
+  -- Typesetting {{{
   {'iamcco/markdown-preview.nvim',
     build = function()
       vim.fn['mkdp#util#install']()
@@ -188,18 +206,23 @@ return {
       require('which-key').register({
         ['p'] = { '<cmd>MarkdownPreviewToggle<CR>', 'Toggle markdown preview'}
       }, { prefix = '<localleader>' })
-      vim.g.mkdp_browser = 'firefox'
+      vim.g.mkdp_browser = 'mercury-browser'
       vim.g.mkdp_theme = 'dark'
     end,
     ft = 'markdown'
   },
-  -- }}}
-  -- Latex {{{
   { 'lervag/vimtex',
     ft='tex',
     config = function()
       vim.g.vimtex_view_method = 'zathura'
     end
+  },
+  { 'kaarmu/typst.vim',
+    ft = 'typst',
+    config = function()
+      vim.g.typst_pdf_viewer = 'zathura'
+    end,
+    lazy=false,
   },
   -- }}}
 }

@@ -10,6 +10,7 @@ local servers = {
   'gopls',
   'rust_analyzer',
   'pyright',
+  'typst_lsp',
 }
 
 for _, lsp in ipairs(servers) do
