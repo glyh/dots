@@ -1,160 +1,168 @@
 #!/usr/bin/env ysh
 
-const SCRIPT_PATH = "$(realpath $0 | xargs dirname)"
+const dotPath = "$(realpath $0 | xargs dirname)"
 
-func installParu() {
-  rm -rf /tmp/paru-bin/
-  git clone https://aur.archlinux.org/paru-bin.git
-  cd paru-bin && makepkg -si --noconfirm
+proc ensureAUR(package) {
+  echo "Ensuring AUR package $package is installed"
+  if ! pacman -Qi $package > /dev/null {
+    var targetPath = "/tmp/dot_tmp/AUR/$package"
+    rm -rf $targetPath
+    mkdir -p $targetPath
+    git clone https://aur.archlinux.org/${package}.git $targetPath
+    cd $targetPath {
+      makepkg -si --noconfirm
+    }
+  }
 }
 
-if ! pacman -Qi git {
-  echo 'git is required for dots to work, exiting'
-  exit 1
+proc syncPkgListWithYay() {
+  yay -S --needed --noconfirm - < ./packages/pkglist.txt
 }
 
-func dots_base() {
+proc dotsBase() {
   echo 'Setting up base'
-  mkdir -p ~/.config/{fish,git}
-  ln -sfnv $SCRIPT_PATH"/bin" ~/Binaries
-  ln -sfnv $SCRIPT_PATH"/dots/fish" ~/.config/fish
-  ln -sfnv $SCRIPT_PATH"/dots/git" ~/.config/git
-  ln -sfnv $SCRIPT_PATH"/dots/readline/.inputrc" ~/.inputrc
-  ln -sfnv $SCRIPT_PATH"/dots/neovim" ~/.config/nvim
+  ln -sfnv $dotPath/bin ~/Binaries
+  ln -sfnv $dotPath/dots/fish ~/.config/fish
+  ln -sfnv $dotPath/dots/git ~/.config/git
+  ln -sfnv $dotPath/dots/readline/.inputrc ~/.inputrc
+  ln -sfnv $dotPath/dots/neovim ~/.config/nvim
 
   mkdir -p ~/.local/share/gopass
-  ln -sfnv $SCRIPT_PATH"/encrypted/gopass/stores" ~/.local/share/gopass/stores
-  ln -sfnv $SCRIPT_PATH"/dots/gopass" ~/.config/gopass
+  ln -sfnv $dotPath/encrypted/gopass/stores ~/.local/share/gopass/stores
+  ln -sfnv $dotPath/dots/gopass ~/.config/gopass
 }
 
-func dots_electron() {
-  ln -sfnv $SCRIPT_PATH"/dots/electron-flags.conf" ~/.config/electron-flags.conf
-  ln -sfnv $SCRIPT_PATH"/dots/electron-flags.conf" ~/.config/electron12-flags.conf
-  ln -sfnv $SCRIPT_PATH"/dots/electron-flags.conf" ~/.config/electron13-flags.conf
-  ln -sfnv $SCRIPT_PATH"/dots/electron-flags.conf" ~/.config/chromium-flags.conf
-  ln -sfnv $SCRIPT_PATH"/dots/chromium-flags.conf" ~/.config/chromium-flags.conf
-  ln -sfnv $SCRIPT_PATH"/dots/thorium-flags.conf" ~/.config/thorium-flags.conf
+proc dotsKitty() {
+  ln -sfnv $dotPath/dots/kitty ~/.config/kitty
 }
 
-func dots_kitty() {
-  ln -sfnv $SCRIPT_PATH"/dots/kitty" ~/.config/kitty
-}
-
-func dots_firefox() {
-  var target_dir = "$SCRIPT_PATH/encrypted/mercury"
-  if test -d $target_dir {
-    cd $target_dir {
+proc dotsMercury() {
+  var targetPath = "./encrypted/mercury"
+  if test -d $targetPath {
+    echo "Trying to sync Mercury profile"
+    cd $targetPath {
       git pull
     }
   } else {
     git clone git@github.com:glyh/mercury_encrypted.git encrypted/mercury
   }
-  if mountpoint ~/.mercury {
+  if mountpoint ~/.mercury > /dev/null {
     echo "Mercury profile is around mounted, skipping"
   } else {
     mkdir -p ~/.mercury
     rm -rf ~/.mercury/*
-    gocryptfs $target_dir/mercury ~/.mercury/ -extpass "gopass show -o mercury_gocryptfs"
+    gocryptfs $targetPath/mercury ~/.mercury/ -extpass "gopass show -o mercury_gocryptfs"
   }
 }
 
-func dots_de() {
+proc dotsDe() {
   echo 'Setting up DE'
-  mkdir -p ~/.config/{hypr,waybar,mako,tofi}
-  ln -sfnv $SCRIPT_PATH"/dots/xdg/mimeapps.list" ~/.config/mimeapps.list
-  ln -sfnv $SCRIPT_PATH"/dots/hyprland" ~/.config/hypr
-  ln -sfnv $SCRIPT_PATH"/dots/waybar" ~/.config/waybar
-  ln -sfnv $SCRIPT_PATH"/dots/mako" ~/.config/mako
-  ln -sfnv $SCRIPT_PATH"/dots/tofi" ~/.config/tofi
-  ln -sfnv $SCRIPT_PATH"/dots/x/Xresources" ~/.Xresources
-  desktop-file-install --dir=$HOME/.local/share/applications $SCRIPT_PATH"/dots/applications"/*
-  # call dots_electron()
-  call dots_kitty()
-  call dots_firefox()
+  ln -sfnv $dotPath/dots/xdg/mimeapps.list ~/.config/mimeapps.list
+  ln -sfnv $dotPath/dots/hyprland ~/.config/hypr
+  ln -sfnv $dotPath/dots/waybar ~/.config/waybar
+  ln -sfnv $dotPath/dots/mako ~/.config/mako
+  ln -sfnv $dotPath/dots/tofi ~/.config/tofi
+  ln -sfnv $dotPath/dots/x/Xresources ~/.Xresources
+  desktop-file-install --dir=$HOME/.local/share/applications ./dots/applications/*
+  dotsKitty
+  dotsMercury
 }
 
-func dots_aria2() {
-  rm -rf ~/.aria2
-  git clone https://github.com/P3TERX/aria2.conf.git ~/.aria2
-  touch ~/.aria2/aria2.session
-  ln -sfnv $SCRIPT_PATH"/dots/aria2/aria2.conf" ~/.aria2/aria2.conf 
+proc dotsAria2() {
+  if ! test -d ~/.aria2 {
+    git clone https://github.com/P3TERX/aria2.conf.git ~/.aria2
+  } else {
+    echo "Trying to sync aria2.conf"
+    cd ~/.aria2 {
+      git pull
+    }
+  }
+  rm ~/.aria2/aria2.conf
+  ln -sfnv $dotPath/dots/aria2/aria2.conf ~/.aria2/aria2.conf 
+  cd ~/.aria2 {
+    rm ./aria2.conf
+    ln -sfnv $dotPath/dots/aria2/aria2.conf ./aria2.conf 
+    touch aria2.session
+    ./tracker.sh
+  }
 }
 
-func dots_jellyfin() {
-  ln -sfnv $SCRIPT_PATH"/dots/javsp" ~/.config/javsp
+proc dotsJellyfin() {
+  ln -sfnv $dotPath/dots/javsp ~/.config/javsp
 }
 
-func dots_tools() {
+proc dotsTools() {
   # TODO: mpd
   echo 'Setting up tools'
-  mkdir -p ~/.config/{ranger,tealdeer,bat,starship,zathura,fcitx5}
-  ln -sfnv $SCRIPT_PATH"/dots/ranger" ~/.config/ranger
-  ln -sfnv $SCRIPT_PATH"/dots/tealdeer" ~/.config/tealdeer
-  ln -sfnv $SCRIPT_PATH"/dots/bat" ~/.config/bat
-  ln -sfnv $SCRIPT_PATH"/dots/starship" ~/.config/starship
-  ln -sfnv $SCRIPT_PATH"/dots/proxychains" ~/.proxychains
-  call dots_aria2()
-  call dots_jellyfin()
-  ln -sfnv $SCRIPT_PATH"/dots/zathura" ~/.config/zathura
-  ln -sfnv $SCRIPT_PATH"/dots/fcitx5" ~/.config/fcitx5
+  ln -sfnv $dotPath/dots/ranger ~/.config/ranger
+  ln -sfnv $dotPath/dots/tealdeer ~/.config/tealdeer
+  ln -sfnv $dotPath/dots/bat ~/.config/bat
+  ln -sfnv $dotPath/dots/starship ~/.config/starship
+  ln -sfnv $dotPath/dots/proxychains ~/.proxychains
+  dotsAria2
+  dotsJellyfin
+  ln -sfnv $dotPath/dots/zathura ~/.config/zathura
+  ln -sfnv $dotPath/dots/fcitx5 ~/.config/fcitx5
 }
 
-func dots_asdf(){
-  if ! pacman -Qi git {
-    paru -S asdf-vm --noconfirm
-  }
+proc dotsAsdf(){
+  # ensureAUR asdf-vm
   # osh not compatible with asdf yet 
   # https://github.com/oilshell/oil/issues/428#issuecomment-1986684491
   echo """
     source /opt/asdf-vm/asdf.sh
     asdf plugin add zig https://github.com/asdf-community/asdf-zig.git
   """ | sh
-  ln -sfnv $SCRIPT_PATH"/dots/asdf/tool-versions" ~/.tool-versions
+  ln -sfnv $dotPath/dots/asdf/tool-versions ~/.tool-versions
 }
 
-func dots_languages() {
+proc dotsLanguages() {
   echo 'Setting up languages'
 
   # Rust
   mkdir -p ~/.config/cargo
-  ln -sfnv $SCRIPT_PATH"/dots/cargo/config.toml" ~/.config/cargo/config.toml
+  ln -sfnv $dotPath/dots/cargo/config.toml ~/.config/cargo/config.toml
 
   # Python
-  ln -sfnv $SCRIPT_PATH"/dots/pip" ~/.config/pip
+  ln -sfnv $dotPath/dots/pip ~/.config/pip
 
   # TypeScript
-  ln -sfnv $SCRIPT_PATH"/dots/bun/bunfig.toml" ~/.bunfig.toml
+  ln -sfnv $dotPath/dots/bun/bunfig.toml ~/.bunfig.toml
 
   # Ruby 
   mkdir -p ~/.bundle
-  ln -sfnv $SCRIPT_PATH"/dots/bundle/config" ~/.bundle/config
+  ln -sfnv $dotPath/dots/bundle/config ~/.bundle/config
 
-  call dots_asdf()
+  dotsAsdf
 }
 
-func dots_services() {
+proc dotsServices() {
   echo 'Setting up services'
   mkdir -p ~/.config/systemd
-  ln -sfnv $SCRIPT_PATH"/services" ~/.config/systemd/user
+  ln -sfnv $dotPath/services ~/.config/systemd/user
 }
 
-func dots_etc() {
+proc dotsEtc() {
   echo 'Setting up etc'
-  var etc_configs = split("$(find $SCRIPT_PATH/etc -type f)")
+  var etc_configs = split("$(find $dotPath/etc -type f)")
   for source_path in (etc_configs) {
-    var relative_path = "$(realpath -s --relative-to=$SCRIPT_PATH/etc $source_path)"
+    var relative_path = "$(realpath -s --relative-to=$dotPath/etc $source_path)"
     var destination_path = "/etc/$relative_path"
     sudo rm $destination_path
     sudo ln -sfnv $source_path $destination_path
   }
 }
 
-call dots_etc()
+ensureAUR yay-bin
+syncPkgListWithYay
 
+cd $dotPath
+dotsEtc
 mkdir -p ~/.config
-call dots_base()
-call dots_de()
-call dots_tools()
-call dots_languages()
-call dots_services()
-echo "$SCRIPT_PATH" > ~/.where_is_dot
+dotsBase
+dotsDe
+dotsTools
+dotsLanguages
+dotsServices
+
+echo "$dotPath" > ~/.where_is_dot

@@ -45,6 +45,7 @@ linux
 linux-firmware
 logseq-desktop-wayland-bin
 lxsession
+ly
 mako
 man-db
 man-pages
@@ -62,7 +63,6 @@ openssh
 otf-firamono-nerd
 page-git
 pamixer
-paru-bin
 pavucontrol
 podman
 podman-compose
@@ -78,16 +78,17 @@ reflector
 ripgrep
 rsync
 rustup
-sddm
 slurp
 starship
 steam
 sudo
 tealdeer
+texlive-full
 tk
 tofi
 tree
 ttf-firacode-nerd
+typst
 udiskie
 unzip
 uuplugin-bin
@@ -97,6 +98,7 @@ vimiv
 waybar
 wget
 wl-clipboard
+yay-bin
 zathura
 zathura-pdf-mupdf
 zoxide
