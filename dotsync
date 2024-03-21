@@ -40,6 +40,7 @@ proc dotsKitty() {
 }
 
 proc dotsMercury() {
+  mkdir -p ~/Documents/credential/mercury
   ln -sfnv ~/Documents/credential/mercury ~/.mercury
 }
 
