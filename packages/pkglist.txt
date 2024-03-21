@@ -30,8 +30,6 @@ git
 git-delta
 git-lfs
 go
-gocryptfs
-gopass
 gopass-jsonapi
 grim
 grub

@@ -33,10 +33,6 @@ proc dotsBase() {
   ln -sfnv $dotPath/dots/git ~/.config/git
   ln -sfnv $dotPath/dots/readline/.inputrc ~/.inputrc
   ln -sfnv $dotPath/dots/neovim ~/.config/nvim
-
-  mkdir -p ~/.local/share/gopass
-  ln -sfnv $dotPath/encrypted/gopass/stores ~/.local/share/gopass/stores
-  ln -sfnv $dotPath/dots/gopass ~/.config/gopass
 }
 
 proc dotsKitty() {
@@ -44,22 +40,7 @@ proc dotsKitty() {
 }
 
 proc dotsMercury() {
-  var targetPath = "./encrypted/mercury"
-  if test -d $targetPath {
-    echo "Trying to sync Mercury profile"
-    cd $targetPath {
-      git pull
-    }
-  } else {
-    git clone git@github.com:glyh/mercury_encrypted.git encrypted/mercury
-  }
-  if mountpoint ~/.mercury > /dev/null {
-    echo "Mercury profile is around mounted, skipping"
-  } else {
-    mkdir -p ~/.mercury
-    rm -rf ~/.mercury/*
-    gocryptfs $targetPath/mercury ~/.mercury/ -extpass "gopass show -o mercury_gocryptfs"
-  }
+  ln -sfnv ~/Documents/credential/mercury ~/.mercury
 }
 
 proc dotsDe() {
