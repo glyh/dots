@@ -9,6 +9,7 @@ bcachefs-tools
 bottles
 bottom
 choosenim-bin
+clang
 cuda
 dbeaver
 dragon-drop
@@ -21,6 +22,7 @@ fcitx5-gtk
 fcitx5-pinyin-custom-pinyin-dictionary
 fcitx5-qt
 fish
+frum-bin
 fzf
 gammastep
 gimp
@@ -37,6 +39,7 @@ hyprland
 intel-ucode
 jellyfin-ffmpeg
 jellyfin-media-player
+jq
 kitty
 komga
 light
@@ -49,6 +52,7 @@ mako
 man-db
 man-pages
 mercury-browser-bin
+mold
 mpd
 neovim
 networkmanager
@@ -102,6 +106,3 @@ zathura
 zathura-pdf-mupdf
 zoxide
 zvm
-frum-bin
-mold
-clang
