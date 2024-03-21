@@ -144,7 +144,7 @@ proc dotsServices() {
 
 proc dotsEtc() {
   echo 'Setting up etc'
-  var etc_configs = split("$(find $dotPath/etc -type f)")
+  var etc_configs = split("$(find $dotPath/sys/etc -type f)")
   for source_path in (etc_configs) {
     var relative_path = "$(realpath -s --relative-to=$dotPath/etc $source_path)"
     var destination_path = "/etc/$relative_path"
@@ -153,16 +153,24 @@ proc dotsEtc() {
   }
 }
 
-ensureAUR yay-bin
-syncPkgListWithYay
+proc addGroups() {
+  var groups = join(split("$(cat ./groups.txt)"), ",")
+  sudo usermod -aG $groups $(whoami)
+}
 
-cd $dotPath
-dotsEtc
-mkdir -p ~/.config
-dotsBase
-dotsDe
-dotsTools
-dotsLanguages
-dotsServices
+cd $dotPath {
+  ensureAUR yay-bin
+  syncPkgListWithYay
 
-echo "$dotPath" > ~/.where_is_dot
+  addGroups
+  dotsEtc
+
+  mkdir -p ~/.config
+  dotsBase
+  dotsDe
+  dotsTools
+  dotsLanguages
+  dotsServices
+
+  echo "$dotPath" > ~/.where_is_dot
+}

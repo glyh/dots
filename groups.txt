@@ -1,2 +1,1 @@
-video # light
-wheel # sudo
+video wheel lyh

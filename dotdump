@@ -1,0 +1,8 @@
+#!/usr/bin/env ysh
+
+const dotPath = "$(realpath $0 | xargs dirname)"
+
+cd $dotPath {
+  pacman -Qqe > ./packages/pkglist.txt
+  groups > ./groups.txt
+}

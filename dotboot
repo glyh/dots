@@ -7,4 +7,4 @@ if [[ ! $? -eq 0 ]]; then
 else
   echo 'oils is already installed, skipping bootstrap'
 fi
-./sync
+./dotsync
