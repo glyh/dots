@@ -165,7 +165,7 @@ return {
       'nvim-telescope/telescope-ui-select.nvim',
     },
     opts = {
-      extensions_list = { 'themes', 'terms', 'ui-select', 'projects' },
+      extensions_list = { 'themes', 'terms' },
     }
   },
   { 'nvim-telescope/telescope-ui-select.nvim',

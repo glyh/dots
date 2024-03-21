@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+DOT_PATH="$(realpath $0 | xargs dirname)"
+
+pacman -Qi oils-for-unix > /dev/null
+if [[ ! $? -eq 0 ]]; then
+  cd $DOT_PATH/bootstrap_data/oils-for-unix/ && makepkg -si --noconfirm
+else
+  echo 'oils is already installed, skipping bootstrap'
+fi
+./sync
