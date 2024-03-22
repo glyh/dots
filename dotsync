@@ -6,6 +6,7 @@
 const dotPath = "$(realpath $0 | xargs dirname)"
 
 const XDG_CONFIG_HOME = ${XDG_CONFIG_HOME:-'~/.config'}
+const XDG_DATA_HOME = ${XDG_DATA_HOME:-'~/.local/share'}
 
 proc ensurePacman(package) {
   echo "Ensuring package $package is installed"
@@ -155,14 +156,14 @@ proc dotsLanguages() {
 
   # JS & TypeScript
   ln -sfnv $dotPath/dots/npm $XDG_CONFIG_HOME/npm
-  ln -sfnv $dotPath/dots/bun/bunfig.toml ~/.bunfig.toml
+  ln -sfnv $dotPath/dots/bun/bunfig.toml $XDG_CONFIG_HOME/.bunfig.toml
 
   # Ruby, depends on rust 
-  mkdir -p ~/.bundle
-  ln -sfnv $dotPath/dots/bundle/config ~/.bundle/config
+  # mkdir -p ~/.bundle
+  ln -sfnv $dotPath/dots/bundler $XDG_CONFIG_HOME/bundler
   try {
     # frum panics if ruby is already installed
-    frum --ruby-build-mirror=https://cache.ruby-china.com/pub/ruby install 3.3.0
+    frum --ruby-build-mirror=https://cache.ruby-china.com/pub/ruby install 3.3.0 2> /dev/null
   }
   frum global 3.3.0
 
@@ -199,6 +200,13 @@ proc addGroups() {
   sudo usermod -aG $groups $(whoami)
 }
 
+proc writeMetaData() {
+  echo "Writing metadata"
+  mkdir -p $XDG_DATA_HOME/dotfiles
+  echo $XDG_DATA_HOME
+  echo "$dotPath" > $XDG_DATA_HOME/dotfiles/path
+}
+
 cd $dotPath {
   ensureAUR yay-bin
   dotsRust # some packages depends on rust
@@ -213,6 +221,5 @@ cd $dotPath {
   dotsServices
 
   addGroups
-
-  echo "$dotPath" > ~/.where_is_dot
+  writeMetaData
 }
