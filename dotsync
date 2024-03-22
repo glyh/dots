@@ -106,11 +106,12 @@ proc dotsTools() {
   ln -sfnv $dotPath/dots/bat $XDG_CONFIG_HOME/bat
   ln -sfnv $dotPath/dots/starship $XDG_CONFIG_HOME/starship
   ln -sfnv $dotPath/dots/proxychains ~/.proxychains
-  dotsAria2
-  dotsJellyfin
   ln -sfnv $dotPath/dots/zathura $XDG_CONFIG_HOME/zathura
   ln -sfnv $dotPath/dots/fcitx5 $XDG_CONFIG_HOME/fcitx5
-  dotsNix
+  ln -sfnv $dotPath/dots/mpv $XDG_CONFIG_HOME/mpv
+  dotsAria2
+  dotsJellyfin
+  # dotsNix
   dotsSteam
 }
 
