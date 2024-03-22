@@ -15,7 +15,7 @@ abbr --add sus systemctl --user start
 # Editor commands
 abbr --add e $EDITOR
 abbr --add vi $EDITOR
-# abbr --add pe "GITHUB=github.com proxychains4 $EDITOR"
+abbr --add pe "GITHUB=github.com proxychains -q $EDITOR"
 abbr --add eu "nvim -u NONE"
 abbr --add er "sudoedit"
 # abbr --add ee "lvim ~/.config/lvim/config.lua" # editor

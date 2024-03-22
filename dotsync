@@ -44,6 +44,12 @@ proc dotsMercury() {
   ln -sfnv ~/Documents/credential/mercury ~/.mercury
 }
 
+
+proc dotsThorium() {
+  mkdir -p ~/Documents/credential/thorium
+  ln -sfnv ~/Documents/credential/thorium ~/.config/thorium
+}
+
 proc dotsDe() {
   echo 'Setting up DE'
   ln -sfnv $dotPath/dots/xdg/mimeapps.list ~/.config/mimeapps.list
@@ -54,7 +60,8 @@ proc dotsDe() {
   ln -sfnv $dotPath/dots/x/Xresources ~/.Xresources
   desktop-file-install --dir=$HOME/.local/share/applications ./dots/applications/*
   dotsKitty
-  dotsMercury
+  # dotsMercury
+  dotsThorium
 }
 
 proc dotsAria2() {
@@ -146,10 +153,16 @@ proc dotsLanguages() {
   yes | zvm use 0.11.0
 }
 
+proc dotsRclone() {
+  sudo mkdir -p /mnt/pikpak
+  sudo chown lyh /mnt/pikpak
+}
+
 proc dotsServices() {
   echo 'Setting up services'
   mkdir -p ~/.config/systemd
   ln -sfnv $dotPath/services ~/.config/systemd/user
+  dotsRclone
 }
 
 proc dotsEtc() {

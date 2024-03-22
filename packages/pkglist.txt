@@ -12,6 +12,7 @@ choosenim-bin
 clang
 cuda
 dbeaver
+direnv
 dragon-drop
 efibootmgr
 eza
@@ -37,6 +38,8 @@ hyprland
 intel-ucode
 jellyfin-ffmpeg
 jellyfin-media-player
+jellyfin-server
+jellyfin-web
 jq
 kitty
 komga
@@ -49,7 +52,6 @@ ly
 mako
 man-db
 man-pages
-mercury-browser-bin
 mold
 mpd
 neovim
@@ -85,6 +87,7 @@ steam
 sudo
 tealdeer
 texlive-full
+thorium-browser-bin
 tk
 tofi
 tree
