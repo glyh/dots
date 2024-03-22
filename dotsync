@@ -159,6 +159,7 @@ proc dotsRclone() {
 
 proc dotsServices() {
   echo 'Setting up services'
+  ln -sfnv $dotPath/dots/environment.d $XDG_CONFIG_HOME/environment.d
   mkdir -p $XDG_CONFIG_HOME/systemd
   ln -sfnv $dotPath/services $XDG_CONFIG_HOME/systemd/user
   dotsRclone

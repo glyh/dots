@@ -12,6 +12,7 @@ set fish_vi_force_cursor
 abbr --add suq systemctl --user status
 abbr --add sus systemctl --user start
 abbr --add sux systemctl --user stop
+abbr --add ju journalctl --user -u
 
 # Editor commands
 abbr --add e $EDITOR
