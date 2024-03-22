@@ -11,6 +11,7 @@ set fish_vi_force_cursor
 
 abbr --add suq systemctl --user status
 abbr --add sus systemctl --user start
+abbr --add sux systemctl --user stop
 
 # Editor commands
 abbr --add e $EDITOR
@@ -81,3 +82,4 @@ abbr --add rcr  "rclone rc vfs/refresh recursive=true"
 abbr --add dosnap "sudo bcachefs subvolume snapshot -r $HOME/Documents/ /snapshots/user/(date +%Y.%m.%d)"
 abbr --add rmsnap "sudo bcachefs subvolume delete /snapshots/user/(date +%Y.%m.%d)"
 abbr --add --position anywhere cpy " | wl-copy"
+

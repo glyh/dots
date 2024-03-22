@@ -88,7 +88,6 @@ sudo
 tealdeer
 texlive-full
 thorium-browser-bin
-tk
 tofi
 tree
 ttf-firacode-nerd

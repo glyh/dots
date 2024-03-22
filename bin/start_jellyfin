@@ -7,7 +7,7 @@ FFMPEG="/usr/lib/jellyfin-ffmpeg/ffmpeg"
 
 exec jellyfin \
   -d $JELLYFINDIR/data \
-  -C ~/.cache/jellyfin \
+  -C $XDG_CACHE_HOME/jellyfin \
   -c $JELLYFINDIR/config \
-  -l ~/.log/jellyfin \
-  --ffmpeg $FFMPEG \
+  -l $XDG_CACHE_HOME/jellyfin/log \
+  --ffmpeg $FFMPEG
