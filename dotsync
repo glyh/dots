@@ -71,18 +71,19 @@ proc dotsDe() {
 }
 
 proc dotsAria2() {
-  if ! test -d ~/.aria2 {
-    git clone https://github.com/P3TERX/aria2.conf.git ~/.aria2
+  var aria2Config = "$XDG_CONFIG_HOME/aria2"
+  if ! test -d $aria2Config {
+    git clone https://github.com/P3TERX/aria2.conf.git $aria2Config
   } else {
     echo "Trying to sync aria2.conf"
-    cd ~/.aria2 {
+    cd $aria2Config {
       git pull
     }
   }
-  rm ~/.aria2/aria2.conf
-  ln -sfnv $dotPath/dots/aria2/aria2.conf ~/.aria2/aria2.conf 
-  touch ~/.aria2/aria2.session
-  ~/.aria2/tracker.sh ./dots/aria2/aria2.conf
+  rm $aria2Config/aria2.conf
+  ln -sfnv $dotPath/dots/aria2/aria2.conf $aria2Config/aria2.conf
+  touch $aria2Config/aria2.session
+  $aria2Config/tracker.sh ./dots/aria2/aria2.conf
 }
 
 proc dotsJellyfin() {
