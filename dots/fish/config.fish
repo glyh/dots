@@ -78,6 +78,6 @@ abbr --add p "proxychains -q"
 abbr --add gacu "git add -A; git commit -m 'update'; git push"
 
 abbr --add rcr  "rclone rc vfs/refresh recursive=true"
-abbr --add dosnap "sudo bcachefs subvolume snapshot -r /home/lyh/Documents/ /snapshots/user/(date +%Y.%m.%d)"
+abbr --add dosnap "sudo bcachefs subvolume snapshot -r $HOME/Documents/ /snapshots/user/(date +%Y.%m.%d)"
 abbr --add rmsnap "sudo bcachefs subvolume delete /snapshots/user/(date +%Y.%m.%d)"
 abbr --add --position anywhere cpy " | wl-copy"

@@ -8,7 +8,6 @@ set -gx VDPAU_DRIVER nvidia
 
 # XDG
 set -gx  XDG_CONFIG_HOME     ~/.config
-set -gx  XDG_USER_CONFIG_DIR ~/.config
 
 # Default utils
 if type -q nvim; 

@@ -1,6 +1,11 @@
 #!/usr/bin/env ysh
 
+# BUG: for now environment variables are mostly loaded in fish, so in order to use them
+# I need to find a shell agnostic way for loading environment variables.
+
 const dotPath = "$(realpath $0 | xargs dirname)"
+
+const XDG_CONFIG_HOME = ${XDG_CONFIG_HOME:-'~/.config'}
 
 proc ensurePacman(package) {
   echo "Ensuring package $package is installed"
@@ -29,16 +34,17 @@ proc syncPkgListWithYay() {
 proc dotsBase() {
   echo 'Setting up base'
   ln -sfnv $dotPath/bin ~/Binaries
-  ln -sfnv $dotPath/dots/fish ~/.config/fish
-  ln -sfnv $dotPath/dots/git ~/.config/git
-  ln -sfnv $dotPath/dots/readline/.inputrc ~/.inputrc
-  ln -sfnv $dotPath/dots/neovim ~/.config/nvim
+  ln -sfnv $dotPath/dots/fish $XDG_CONFIG_HOME/fish
+  ln -sfnv $dotPath/dots/git $XDG_CONFIG_HOME/git
+  ln -sfnv $dotPath/dots/readline $XDG_CONFIG_HOME/readline
+  ln -sfnv $dotPath/dots/neovim $XDG_CONFIG_HOME/nvim
 }
 
 proc dotsKitty() {
-  ln -sfnv $dotPath/dots/kitty ~/.config/kitty
+  ln -sfnv $dotPath/dots/kitty $XDG_CONFIG_HOME/kitty
 }
 
+# Unused
 proc dotsMercury() {
   mkdir -p ~/Documents/credential/mercury
   ln -sfnv ~/Documents/credential/mercury ~/.mercury
@@ -47,16 +53,16 @@ proc dotsMercury() {
 
 proc dotsThorium() {
   mkdir -p ~/Documents/credential/thorium
-  ln -sfnv ~/Documents/credential/thorium ~/.config/thorium
+  ln -sfnv ~/Documents/credential/thorium $XDG_CONFIG_HOME/thorium
 }
 
 proc dotsDe() {
   echo 'Setting up DE'
-  ln -sfnv $dotPath/dots/xdg/mimeapps.list ~/.config/mimeapps.list
-  ln -sfnv $dotPath/dots/hyprland ~/.config/hypr
-  ln -sfnv $dotPath/dots/waybar ~/.config/waybar
-  ln -sfnv $dotPath/dots/mako ~/.config/mako
-  ln -sfnv $dotPath/dots/tofi ~/.config/tofi
+  ln -sfnv $dotPath/dots/xdg/mimeapps.list $XDG_CONFIG_HOME/mimeapps.list
+  ln -sfnv $dotPath/dots/hyprland $XDG_CONFIG_HOME/hypr
+  ln -sfnv $dotPath/dots/waybar $XDG_CONFIG_HOME/waybar
+  ln -sfnv $dotPath/dots/mako $XDG_CONFIG_HOME/mako
+  ln -sfnv $dotPath/dots/tofi $XDG_CONFIG_HOME/tofi
   ln -sfnv $dotPath/dots/x/Xresources ~/.Xresources
   desktop-file-install --dir=$HOME/.local/share/applications ./dots/applications/*
   dotsKitty
@@ -80,7 +86,7 @@ proc dotsAria2() {
 }
 
 proc dotsJellyfin() {
-  ln -sfnv $dotPath/dots/javsp ~/.config/javsp
+  ln -sfnv $dotPath/dots/javsp $XDG_CONFIG_HOME/javsp
 }
 
 # TODO: install nix
@@ -95,20 +101,20 @@ proc dotsNix() {
 proc dotsTools() {
   # TODO: mpd
   echo 'Setting up tools'
-  ln -sfnv $dotPath/dots/ranger ~/.config/ranger
-  ln -sfnv $dotPath/dots/tealdeer ~/.config/tealdeer
-  ln -sfnv $dotPath/dots/bat ~/.config/bat
-  ln -sfnv $dotPath/dots/starship ~/.config/starship
+  ln -sfnv $dotPath/dots/ranger $XDG_CONFIG_HOME/ranger
+  ln -sfnv $dotPath/dots/tealdeer $XDG_CONFIG_HOME/tealdeer
+  ln -sfnv $dotPath/dots/bat $XDG_CONFIG_HOME/bat
+  ln -sfnv $dotPath/dots/starship $XDG_CONFIG_HOME/starship
   ln -sfnv $dotPath/dots/proxychains ~/.proxychains
   dotsAria2
   dotsJellyfin
-  ln -sfnv $dotPath/dots/zathura ~/.config/zathura
-  ln -sfnv $dotPath/dots/fcitx5 ~/.config/fcitx5
+  ln -sfnv $dotPath/dots/zathura $XDG_CONFIG_HOME/zathura
+  ln -sfnv $dotPath/dots/fcitx5 $XDG_CONFIG_HOME/fcitx5
   dotsNix
 }
 
 proc dotsMise() {
-  ln -sfnv $dotPath/dots/mise ~/.config/mise
+  ln -sfnv $dotPath/dots/mise $XDG_CONFIG_HOME/mise
   mise install
 }
 
@@ -144,9 +150,10 @@ proc dotsLanguages() {
   echo 'Setting up languages'
 
   # Python
-  ln -sfnv $dotPath/dots/pip ~/.config/pip
+  ln -sfnv $dotPath/dots/pip $XDG_CONFIG_HOME/pip
 
-  # TypeScript
+  # JS & TypeScript
+  ln -sfnv $dotPath/dots/npm $XDG_CONFIG_HOME/npm
   ln -sfnv $dotPath/dots/bun/bunfig.toml ~/.bunfig.toml
 
   # Ruby, depends on rust 
@@ -170,8 +177,8 @@ proc dotsRclone() {
 
 proc dotsServices() {
   echo 'Setting up services'
-  mkdir -p ~/.config/systemd
-  ln -sfnv $dotPath/services ~/.config/systemd/user
+  mkdir -p $XDG_CONFIG_HOME/systemd
+  ln -sfnv $dotPath/services $XDG_CONFIG_HOME/systemd/user
   dotsRclone
 }
 
@@ -197,7 +204,7 @@ cd $dotPath {
   syncPkgListWithYay
 
   dotsEtc
-  mkdir -p ~/.config
+  mkdir -p $XDG_CONFIG_HOME
   dotsBase
   dotsDe
   dotsTools
