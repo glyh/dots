@@ -57,8 +57,9 @@ proc dotsDe() {
   ln -sfnv $dotPath/dots/waybar $XDG_CONFIG_HOME/waybar
   ln -sfnv $dotPath/dots/mako $XDG_CONFIG_HOME/mako
   ln -sfnv $dotPath/dots/tofi $XDG_CONFIG_HOME/tofi
-  ln -sfnv $dotPath/dots/x/Xresources ~/.Xresources
-  desktop-file-install --dir=$HOME/.local/share/applications ./dots/applications/*
+  ln -sfnv $dotPath/dots/x11  $XDG_CONFIG_HOME/x11
+  ln -sfnv $dotPath/dots/applications $XDG_DATA_HOME/applications
+  # desktop-file-install --dir=$HOME/.local/share/applications ./dots/applications/*
   dotsKitty
   # dotsMercury
   dotsThorium
@@ -93,6 +94,10 @@ proc dotsNix() {
   }
 }
 
+proc dotsSteam() {
+  mkdir -p $XDG_DATA_HOME/SteamHome
+}
+
 proc dotsTools() {
   # TODO: mpd
   echo 'Setting up tools'
@@ -106,11 +111,7 @@ proc dotsTools() {
   ln -sfnv $dotPath/dots/zathura $XDG_CONFIG_HOME/zathura
   ln -sfnv $dotPath/dots/fcitx5 $XDG_CONFIG_HOME/fcitx5
   dotsNix
-}
-
-proc dotsMise() {
-  ln -sfnv $dotPath/dots/mise $XDG_CONFIG_HOME/mise
-  mise install
+  dotsSteam
 }
 
 proc dotsRust() {

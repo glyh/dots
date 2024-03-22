@@ -1,5 +1,5 @@
 # Basic info
-set -gx GITHUB               github.hscsec.cn
+set -gx GITHUB               git.homegu.com
 # See https://coderschool.cn/3724.html
 
 # Nvidia Drivers
@@ -10,6 +10,8 @@ set -gx VDPAU_DRIVER nvidia
 set -gx  XDG_CONFIG_HOME     ~/.config
 set -gx  XDG_CACHE_HOME     ~/.cache
 set -gx  XDG_DATA_HOME     ~/.local/share
+
+set -gx GNUPGHOME          $XDG_DATA_HOME/gnupg 
 
 # Default utils
 if type -q nvim; 
