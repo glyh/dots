@@ -56,7 +56,6 @@ mold
 mpd
 neovim
 networkmanager
-nix
 noto-fonts-emoji
 ntfs-3g
 nvidia
