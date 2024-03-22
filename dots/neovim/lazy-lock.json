@@ -37,6 +37,7 @@
   "trouble.nvim": { "branch": "main", "commit": "f1168feada93c0154ede4d1fe9183bf69bac54ea" },
   "typst.vim": { "branch": "main", "commit": "6a68ce290b98b2d88c72fff0de723d7d170287a3" },
   "ui": { "branch": "v2.5", "commit": "0a29faa24b0efebe4c74314669f3e7a419c0a877" },
+  "vim-oil": { "branch": "main", "commit": "86636fc92c66cf21d8c186aa0e3d861f2fc4142e" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
   "vim-sandwich": { "branch": "master", "commit": "74cf93d58ccc567d8e2310a69860f1b93af19403" },
   "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" },

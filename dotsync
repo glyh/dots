@@ -215,4 +215,3 @@ cd $dotPath {
 
   echo "$dotPath" > ~/.where_is_dot
 }
-dotsNix

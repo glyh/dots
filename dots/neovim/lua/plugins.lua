@@ -225,4 +225,9 @@ return {
     lazy=false,
   },
   -- }}}
+  -- Languages {{{
+  { 'glyh/vim-oil',
+    ft = 'ysh',
+  },
+  -- }}}
 }
