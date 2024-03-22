@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 if not type -q go
     exit
 end
