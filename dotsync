@@ -45,13 +45,6 @@ proc dotsKitty() {
   ln -sfnv $dotPath/dots/kitty $XDG_CONFIG_HOME/kitty
 }
 
-# Unused
-proc dotsMercury() {
-  mkdir -p ~/Documents/credential/mercury
-  ln -sfnv ~/Documents/credential/mercury ~/.mercury
-}
-
-
 proc dotsThorium() {
   mkdir -p ~/Documents/credential/thorium
   ln -sfnv ~/Documents/credential/thorium $XDG_CONFIG_HOME/thorium
@@ -118,19 +111,6 @@ proc dotsTools() {
 proc dotsMise() {
   ln -sfnv $dotPath/dots/mise $XDG_CONFIG_HOME/mise
   mise install
-}
-
-proc dotsAsdf(){
-  # osh not compatible with asdf yet 
-  # https://github.com/oilshell/oil/issues/428#issuecomment-1986684491
-  echo """
-    source /opt/asdf-vm/asdf.sh
-    asdf plugin add zig https://github.com/asdf-community/asdf-zig.git
-
-    asdf install zig
-    asdf install ruby
-  """ | sh
-  ln -sfnv $dotPath/dots/asdf/tool-versions ~/.tool-versions
 }
 
 proc dotsRust() {
