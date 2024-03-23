@@ -125,7 +125,8 @@ proc dotsTools() {
 
 proc rustUpInstall(tag) {
   try {
-    rustup show active-toolchain | grep $tag > /dev/null
+    # TODO: figure out how to redirect errors
+    rustup toolchain list | grep $tag > /dev/null
   }
   if (_status !== 0) {
     rustup toolchain install $tag
@@ -147,6 +148,7 @@ proc dotsRuby() {
   ln -sfnv $dotPath/dots/bundler $XDG_CONFIG_HOME/bundler
   try {
     # frum panics if ruby is already installed
+    # TODO: figure out how to redirect errors
     frum --ruby-build-mirror=https://cache.ruby-china.com/pub/ruby install 3.3.0 2> /dev/null
   }
   frum global 3.3.0
