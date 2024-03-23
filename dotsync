@@ -54,6 +54,7 @@ proc dotsKitty() {
 proc dotsThorium() {
   mkdir -p ~/Documents/credential/thorium
   ln -sfnv ~/Documents/credential/thorium $XDG_CONFIG_HOME/thorium
+  ln -sfnv $dotPath/dots/electron/thorium-flags.conf $XDG_CONFIG_HOME/thorium-flags.conf
 }
 
 proc dotsDe() {
