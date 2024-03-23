@@ -122,18 +122,22 @@ proc dotsTools() {
   dotsSteam
 }
 
+proc rustUpInstall(tag) {
+  try {
+    rustup show active-toolchain | grep $tag > /dev/null
+  }
+  if (_status !== 0) {
+    rustup toolchain install $tag
+  }
+}
 proc dotsRust() {
   ensurePacman rustup
   ensurePacman clang
   ensurePacman mold
   mkdir -p ~/.cargo
   ln -sfnv $dotPath/dots/cargo/config.toml ~/.cargo/config.toml
-  try {
-    rustup show active-toolchain | grep stable-x86_64 > /dev/null
-  }
-  if (_status !== 0) {
-    rustup toolchain install stable
-  }
+  rustUpInstall stable
+  rustUpInstall nightly
   rustup default stable
 }
 
@@ -165,6 +169,15 @@ proc dotsLanguages() {
   # Zig 
   # `zvm install` reinstalls everytime, this is better
   yes | zvm use 0.11.0
+
+  # CUDA
+  if ! pacman -Qi cuda > /dev/null {
+    sudo downgrade \
+      --ala-only \
+      --ignore always \
+      'gcc11=11.3.0-5' 'cuda=11.8.0-1' 'gcc11-libs=11.3.0-5'\
+      -- --asdeps --noconfirm
+  }
 }
 
 proc dotsRclone() {

@@ -1,3 +1,2 @@
-/bootstrap/oils-for-unix/*
-!/bootstrap/oils-for-unix/PKGBUILD
-encrypted/*
+/packages/oils-for-unix/*
+!/packages/oils-for-unix/PKGBUILD

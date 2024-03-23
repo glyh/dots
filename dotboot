@@ -2,7 +2,7 @@
 DOT_PATH="$(realpath $0 | xargs dirname)"
 
 if ! pacman -Qi oils-for-unix > /dev/null; then
-  cd $DOT_PATH/bootstrap_data/oils-for-unix/ && makepkg -si --noconfirm
+  cd $DOT_PATH/packages/oils-for-unix/ && makepkg -si --noconfirm
 else
   echo 'oils is already installed, skipping bootstrap'
 fi
