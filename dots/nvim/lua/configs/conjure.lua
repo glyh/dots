@@ -6,31 +6,31 @@ vim.g['conjure#mapping#doc_word'] = false
 -- https://github.com/Olical/conjure/wiki/Quick-start:-Clojure
 -- For lein
 require('overseer').register_template({
-    name = "Start Lein nREPL",
-    builder = function()
-      return {
-        name = 'clj-lein-jack',
-        cmd = { "lein", "update-in", ":plugins", "conj", '[cider/cider-nrepl "0.24.0"]', '--', 'repl' },
-      }
-    end,
-    condition = {
-      filetype = { "clojure" },
-    },
+  name = "Start Lein nREPL",
+  builder = function()
+    return {
+      name = 'clj-lein-jack',
+      cmd = { "lein", "update-in", ":plugins", "conj", '[cider/cider-nrepl "0.24.0"]', '--', 'repl' },
+    }
+  end,
+  condition = {
+    filetype = { "clojure" },
+  },
 })
 
--- For Deps.edn    
+-- For Deps.edn
 require('overseer').register_template({
-    name = "Start Deps.edn nREPL",
-    builder = function()
-      return {
-        name = 'clj-deps-jack',
-        cmd = { 'clj', '-M:repl/conjure'}
-        -- cmd = { "lein", "update-in", ":plugins", "conj", '[cider/cider-nrepl "0.24.0"]', '--', 'repl' },
-      }
-    end,
-    condition = {
-      filetype = { "clojure" },
-    },
+  name = "Start Deps.edn nREPL",
+  builder = function()
+    return {
+      name = 'clj-deps-jack',
+      cmd = { 'clj', '-M:repl/conjure' }
+      -- cmd = { "lein", "update-in", ":plugins", "conj", '[cider/cider-nrepl "0.24.0"]', '--', 'repl' },
+    }
+  end,
+  condition = {
+    filetype = { "clojure" },
+  },
 })
 
 -- For shadow-cljs
@@ -46,5 +46,5 @@ autocmd BufReadPost *.cljs :AutoConjureSelect
 ]]
 
 require('which-key').register({
-  ['k'] = { require('conjure.eval')["doc-word"], 'Get document under cursor'}
+  ['k'] = { require('conjure.eval')["doc-word"], 'Get document under cursor' }
 }, { prefix = '<localleader>' })
