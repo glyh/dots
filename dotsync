@@ -154,6 +154,7 @@ proc dotsLanguages() {
 
   # Clojure
   ln -sfnv $dotPath/dots/clojure $XDG_CONFIG_HOME/clojure
+  ln -sfnv $dotPath/dots/lein $XDG_CONFIG_HOME/lein
   ln -sfnv $dotPath/dots/shadow-cljs $XDG_CONFIG_HOME/shadow-cljs
 
   # JS & TypeScript

@@ -10,6 +10,7 @@ bottles
 bottom
 choosenim-bin
 clang
+clojure
 cuda
 dbeaver
 direnv
@@ -78,6 +79,7 @@ ranger
 rclone
 reflector
 ripgrep
+rlwrap
 rsync
 rustup
 slurp
