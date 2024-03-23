@@ -157,6 +157,7 @@ return {
   },
   { 'stevearc/dressing.nvim',
     opts = {},
+    lazy = false,
   },
   { 'toppair/reach.nvim',
     dependencies = 'nvim-web-devicons',
@@ -256,12 +257,17 @@ return {
     dependencies = 'tpope/vim-sexp-mappings-for-regular-people'
   },
   -- }}}
-  -- {{{
-  { 'thosakwe/vim-flutter',
+  -- Flutter {{{
+  {
+    'akinsho/flutter-tools.nvim',
     ft = 'dart',
-    dependencies = 'dart-lang/dart-vim-plugin',
-    config = function()
-      -- TODO
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+    },
+    config = function ()
+      require('flutter-tools').setup {
+
+      }
     end
   },
   -- }}}
