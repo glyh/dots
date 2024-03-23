@@ -3,7 +3,8 @@
 ---@type NvPluginSpec[]
 return {
   -- IDE {{{
-  { 'hrsh7th/nvim-cmp',
+  {
+    'hrsh7th/nvim-cmp',
     config = function(_, opts)
       -- opts.sources[#opts.sources + 1] = { name = 'cmdline' }
       -- opts.sources[#opts.sources + 1] = { name = 'conjure' }
@@ -24,7 +25,6 @@ return {
           { name = 'cmdline' }
         })
       })
-
     end,
     dependencies = {
       'hrsh7th/cmp-cmdline',
@@ -35,7 +35,7 @@ return {
   },
   {
     'stevearc/conform.nvim',
-    -- event = 'BufWritePre' -- uncomment for format on save
+    event = 'BufWritePre', -- uncomment for format on save
     config = function()
       require 'configs.conform'
     end,
@@ -50,17 +50,11 @@ return {
   },
 
   {
-    'nvimtools/none-ls.nvim',
-    config = function()
-      require 'custom.configs.null-ls'
-    end,
-  },
-
-  {
     'williamboman/mason.nvim',
   },
 
-  { 'whoissethdaniel/mason-tool-installer.nvim',
+  {
+    'whoissethdaniel/mason-tool-installer.nvim',
     lazy = false,
     config = function()
       require('mason-tool-installer').setup {
@@ -78,7 +72,7 @@ return {
           -- 'clojure-lsp',
           -- zig
           'zls',
-          -- go 
+          -- go
           'gopls',
           -- typst
           'typst-lsp'
@@ -91,7 +85,8 @@ return {
       }
     end
   },
-  { 'nvim-treesitter/nvim-treesitter',
+  {
+    'nvim-treesitter/nvim-treesitter',
     opts = {
       ensure_installed = {
         'c', 'go', 'lua',
@@ -100,10 +95,12 @@ return {
       },
     },
   },
-  { 'nvim-tree/nvim-tree.lua',
-    cmd = {'NvimTreeFocus', 'NvimTreeClose'},
+  {
+    'nvim-tree/nvim-tree.lua',
+    cmd = { 'NvimTreeFocus', 'NvimTreeClose' },
   },
-  { 'kelly-lin/ranger.nvim',
+  {
+    'kelly-lin/ranger.nvim',
     lazy = false,
     config = function()
       local ranger_nvim = require('ranger-nvim')
@@ -132,31 +129,35 @@ return {
       })
     end,
   },
-  { 'mfussenegger/nvim-dap',
+  {
+    'mfussenegger/nvim-dap',
     config = function() require 'configs.dap' end,
   },
 
 
-  { 'stevearc/overseer.nvim',
+  {
+    'stevearc/overseer.nvim',
     config = function()
       require('overseer').setup({
-        templates = { 'builtin'},
+        templates = { 'builtin' },
       })
     end
   },
 
-  { 'ahmedkhalf/project.nvim',
+  {
+    'ahmedkhalf/project.nvim',
     -- BUG: project.nvim doesn't run well if we lazy load it
     enabled = false,
     config = function()
-      require('project_nvim').setup{
+      require('project_nvim').setup {
         patterns = { '.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json', 'project.clj', 'build.zig' },
       }
     end
   },
   -- }}}
   -- UI {{{
-  { 'folke/which-key.nvim',
+  {
+    'folke/which-key.nvim',
     keys = { '<leader>', '<localleader>', '"', "'", '`', 'c', 'v', ';' },
     config = function()
       require('which-key').setup({
@@ -167,7 +168,8 @@ return {
       require 'configs.whichkey'
     end,
   },
-  { 'folke/todo-comments.nvim',
+  {
+    'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     lazy = false,
     opts = {
@@ -187,15 +189,18 @@ return {
       },
     }
   },
-  { 'folke/trouble.nvim',
+  {
+    'folke/trouble.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     cmd = 'TroubleToggle',
   },
-  { 'stevearc/dressing.nvim',
+  {
+    'stevearc/dressing.nvim',
     opts = {},
     lazy = false,
   },
-  { 'toppair/reach.nvim',
+  {
+    'toppair/reach.nvim',
     dependencies = 'nvim-web-devicons',
     config = function()
       require('reach').setup({
@@ -203,7 +208,8 @@ return {
       })
     end
   },
-  { 'nvim-telescope/telescope.nvim',
+  {
+    'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-ui-select.nvim',
@@ -212,29 +218,33 @@ return {
       extensions_list = { 'themes', 'terms' },
     }
   },
-  { 'nvim-telescope/telescope-ui-select.nvim',
+  {
+    'nvim-telescope/telescope-ui-select.nvim',
     config = function()
       require('telescope').load_extension('ui-select')
     end
   },
   -- }}}
   -- Editing {{{
-  { 'machakann/vim-sandwich',
+  {
+    'machakann/vim-sandwich',
     keys = {
       { 'sa', mode = { 'n', 'v' } },
       { 'sd', mode = { 'n', 'v' } },
       { 'sr', mode = { 'n', 'v' } },
     }
   },
-  { 'wellle/targets.vim',
+  {
+    'wellle/targets.vim',
     keys = {
       { 'a', mode = { 'x', 'o' } },
       { 'i', mode = { 'x', 'o' } },
     },
   },
-  { 'ggandor/leap.nvim',
+  {
+    'ggandor/leap.nvim',
     keys = {
-      { 'f', '<Plug>(leap)', noremap = true, mode = {'n', 'v', 'o'} },
+      { 'f', '<Plug>(leap)', noremap = true, mode = { 'n', 'v', 'o' } },
     },
   },
   { 'tpope/vim-sleuth', lazy = false },
@@ -242,26 +252,29 @@ return {
 
   -- }}}
   -- Typesetting {{{
-  {'iamcco/markdown-preview.nvim',
+  {
+    'iamcco/markdown-preview.nvim',
     build = function()
       vim.fn['mkdp#util#install']()
     end,
     config = function()
       require('which-key').register({
-        ['p'] = { '<cmd>MarkdownPreviewToggle<CR>', 'Toggle markdown preview'}
+        ['p'] = { '<cmd>MarkdownPreviewToggle<CR>', 'Toggle markdown preview' }
       }, { prefix = '<localleader>' })
       vim.g.mkdp_browser = 'mercury-browser'
       vim.g.mkdp_theme = 'dark'
     end,
     ft = 'markdown'
   },
-  { 'lervag/vimtex',
-    ft='tex',
+  {
+    'lervag/vimtex',
+    ft = 'tex',
     config = function()
       vim.g.vimtex_view_method = 'zathura'
     end
   },
-  { 'kaarmu/typst.vim',
+  {
+    'kaarmu/typst.vim',
     ft = 'typst',
     config = function()
       vim.g.typst_pdf_viewer = 'zathura'
@@ -270,24 +283,28 @@ return {
   -- }}}
   -- Languages {{{
   -- Oil {{{
-  { 'glyh/vim-oil',
+  {
+    'glyh/vim-oil',
     ft = 'ysh',
   },
   -- }}}
   -- Clojure {{{
-  { 'eraserhd/parinfer-rust',
+  {
+    'eraserhd/parinfer-rust',
     enabled = false,
     ft = 'clojure',
     build = 'cargo build --release',
   },
-  { 'Olical/conjure',
+  {
+    'Olical/conjure',
     enabled = false,
     ft = 'clojure',
     config = function()
       require('configs.conjure')
     end,
   },
-  { 'guns/vim-sexp',
+  {
+    'guns/vim-sexp',
     enabled = false,
     ft = 'clojure',
     dependencies = 'tpope/vim-sexp-mappings-for-regular-people'
@@ -298,9 +315,9 @@ return {
     'akinsho/flutter-tools.nvim',
     ft = 'dart',
     dependencies = {
-        'nvim-lua/plenary.nvim',
+      'nvim-lua/plenary.nvim',
     },
-    config = function ()
+    config = function()
       require('flutter-tools').setup {
 
       }
