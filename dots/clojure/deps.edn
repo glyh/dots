@@ -1,4 +1,4 @@
-{:mvn/local-repo "~/.cache/m2"
+{:mvn/local-repo "/home/lyh/.cache/m2"
  :mvn/repos 
  {"central" {:url "https://maven.aliyun.com/repository/central"}
   "clojars" {:url "https://mirrors.tuna.tsinghua.edu.cn/clojars/"}}

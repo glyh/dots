@@ -6,7 +6,7 @@ return {
   { 'hrsh7th/nvim-cmp',
     config = function(_, opts)
       opts.sources[#opts.sources + 1] = { name = 'cmdline' }
-      opts.sources[#opts.sources + 1] = { name = 'conjure' }
+      -- opts.sources[#opts.sources + 1] = { name = 'conjure' }
       local cmp = require('cmp')
       cmp.setup(opts)
       cmp.setup.cmdline(':', {
@@ -20,9 +20,9 @@ return {
     end,
     dependencies = {
       'hrsh7th/cmp-cmdline',
-      { 'PaterJason/cmp-conjure',
-        dependencies = 'Olical/conjure',
-      },
+      -- { 'PaterJason/cmp-conjure',
+      --   dependencies = 'Olical/conjure',
+      -- },
     },
   },
   {
@@ -66,8 +66,8 @@ return {
           'clangd',
           'clang-format',
           -- clojure stuff,
-          'clj-kondo',
-          'clojure-lsp',
+          -- 'clj-kondo',
+          -- 'clojure-lsp',
           -- zig
           'zls',
           -- go 
@@ -86,7 +86,9 @@ return {
   { 'nvim-treesitter/nvim-treesitter',
     opts = {
       ensure_installed = {
-        'c', 'go', 'lua', 'clojure',
+        'c', 'go', 'lua',
+        'dart',
+        -- 'clojure',
       },
     },
   },
@@ -237,19 +239,31 @@ return {
   -- }}}
   -- Clojure {{{
   { 'eraserhd/parinfer-rust',
-   ft = 'clojure',
-   build = 'cargo build --release',
+    enabled = false,
+    ft = 'clojure',
+    build = 'cargo build --release',
   },
   { 'Olical/conjure',
+    enabled = false,
     ft = 'clojure',
     config = function()
       require('configs.conjure')
     end,
   },
   { 'guns/vim-sexp',
+    enabled = false,
     ft = 'clojure',
     dependencies = 'tpope/vim-sexp-mappings-for-regular-people'
-  }
+  },
+  -- }}}
+  -- {{{
+  { 'thosakwe/vim-flutter',
+    ft = 'dart',
+    dependencies = 'dart-lang/dart-vim-plugin',
+    config = function()
+      -- TODO
+    end
+  },
   -- }}}
   -- }}}
 }
