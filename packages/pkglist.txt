@@ -23,7 +23,6 @@ fcitx5-gtk
 fcitx5-pinyin-custom-pinyin-dictionary
 fcitx5-qt
 fish
-frum-bin
 fzf
 gammastep
 gimp

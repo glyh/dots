@@ -1,5 +1,5 @@
 # Basic info
-set -gx GITHUB               git.homegu.com
+set -gx GITHUB               githubfast.com
 # See https://coderschool.cn/3724.html
 
 # Nvidia Drivers
@@ -10,6 +10,7 @@ set -gx VDPAU_DRIVER nvidia
 set -gx  XDG_CONFIG_HOME     ~/.config
 set -gx  XDG_CACHE_HOME     ~/.cache
 set -gx  XDG_DATA_HOME     ~/.local/share
+set -gx  XDG_STATE_HOME     ~/.local/state
 
 set -gx GNUPGHOME          $XDG_DATA_HOME/gnupg 
 

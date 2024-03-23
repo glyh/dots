@@ -6,6 +6,7 @@
 const dotPath = "$(realpath $0 | xargs dirname)"
 
 const XDG_CONFIG_HOME = ${XDG_CONFIG_HOME:-'~/.config'}
+const XDG_STATE_HOME = ${XDG_STATE_HOME:-'~/.local/state'}
 const XDG_DATA_HOME = ${XDG_DATA_HOME:-'~/.local/share'}
 
 proc ensurePacman(package) {
@@ -32,10 +33,15 @@ proc syncPkgListWithYay() {
   yay -S --needed --noconfirm - < ./packages/pkglist.txt
 }
 
+proc dotsBash() {
+  mkdir -p "$XDG_STATE_HOME"/bash
+}
+
 proc dotsBase() {
   echo 'Setting up base'
   ln -sfnv $dotPath/bin ~/Binaries
   ln -sfnv $dotPath/dots/fish $XDG_CONFIG_HOME/fish
+  dotsBash
   ln -sfnv $dotPath/dots/git $XDG_CONFIG_HOME/git
   ln -sfnv $dotPath/dots/readline $XDG_CONFIG_HOME/readline
   ln -sfnv $dotPath/dots/neovim $XDG_CONFIG_HOME/nvim
