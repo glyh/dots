@@ -8,6 +8,7 @@ base-devel
 bcachefs-tools
 bottles
 bottom
+bun-bin
 choosenim-bin
 clang
 clojure

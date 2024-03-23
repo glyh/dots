@@ -5,10 +5,17 @@ return {
   -- IDE {{{
   { 'hrsh7th/nvim-cmp',
     config = function(_, opts)
-      opts.sources[#opts.sources + 1] = { name = 'cmdline' }
+      -- opts.sources[#opts.sources + 1] = { name = 'cmdline' }
       -- opts.sources[#opts.sources + 1] = { name = 'conjure' }
       local cmp = require('cmp')
       cmp.setup(opts)
+      cmp.setup.cmdline({ '/', '?' }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer' }
+        }
+      })
+
       cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
@@ -17,6 +24,7 @@ return {
           { name = 'cmdline' }
         })
       })
+
     end,
     dependencies = {
       'hrsh7th/cmp-cmdline',
