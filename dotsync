@@ -115,6 +115,7 @@ proc dotsTools() {
   ln -sfnv $dotPath/dots/zathura $XDG_CONFIG_HOME/zathura
   ln -sfnv $dotPath/dots/fcitx5 $XDG_CONFIG_HOME/fcitx5
   ln -sfnv $dotPath/dots/mpv $XDG_CONFIG_HOME/mpv
+  ln -sfnv $dotPath/dots/containers $XDG_CONFIG_HOME/containers
   dotsAria2
   dotsJellyfin
   # dotsNix

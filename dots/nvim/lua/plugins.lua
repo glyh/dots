@@ -91,6 +91,7 @@ return {
       ensure_installed = {
         'c', 'go', 'lua',
         'dart',
+        'cuda',
         -- 'clojure',
       },
     },
