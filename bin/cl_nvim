@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-rm -rf ~/.local/share/nvim ~/.config/nvim/plugin ~/.cache/nvim ~/.local/state/nvim
+rm -rf $XDG_DATA_HOME/nvim $XDG_CACHE_HOME/nvim $XDG_STATE_HOME/nvim

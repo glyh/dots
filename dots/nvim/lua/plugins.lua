@@ -6,6 +6,7 @@ return {
   { 'hrsh7th/nvim-cmp',
     config = function(_, opts)
       opts.sources[#opts.sources + 1] = { name = 'cmdline' }
+      opts.sources[#opts.sources + 1] = { name = 'conjure' }
       local cmp = require('cmp')
       cmp.setup(opts)
       cmp.setup.cmdline(':', {
@@ -17,7 +18,12 @@ return {
         })
       })
     end,
-    dependencies = 'hrsh7th/cmp-cmdline'
+    dependencies = {
+      'hrsh7th/cmp-cmdline',
+      { 'PaterJason/cmp-conjure',
+        dependencies = 'Olical/conjure',
+      },
+    },
   },
   {
     'stevearc/conform.nvim',
@@ -80,7 +86,7 @@ return {
   { 'nvim-treesitter/nvim-treesitter',
     opts = {
       ensure_installed = {
-        'c', 'go', 'lua',
+        'c', 'go', 'lua', 'clojure',
       },
     },
   },
@@ -94,7 +100,6 @@ return {
 
 
   { 'stevearc/overseer.nvim',
-    enabled = false,
     config = function()
       require('overseer').setup({
         templates = { 'builtin'},
@@ -114,7 +119,7 @@ return {
   -- }}}
   -- UI {{{
   { 'folke/which-key.nvim',
-    keys = { '<leader>', '"', "'", '`', 'c', 'v', ';' },
+    keys = { '<leader>', '<localleader>', '"', "'", '`', 'c', 'v', ';' },
     config = function()
       require('which-key').setup({
         triggers_blacklist = {
@@ -222,12 +227,29 @@ return {
     config = function()
       vim.g.typst_pdf_viewer = 'zathura'
     end,
-    lazy=false,
   },
   -- }}}
   -- Languages {{{
+  -- Oil {{{
   { 'glyh/vim-oil',
     ft = 'ysh',
   },
+  -- }}}
+  -- Clojure {{{
+  { 'eraserhd/parinfer-rust',
+   ft = 'clojure',
+   build = 'cargo build --release',
+  },
+  { 'Olical/conjure',
+    ft = 'clojure',
+    config = function()
+      require('configs.conjure')
+    end,
+  },
+  { 'guns/vim-sexp',
+    ft = 'clojure',
+    dependencies = 'tpope/vim-sexp-mappings-for-regular-people'
+  }
+  -- }}}
   -- }}}
 }
