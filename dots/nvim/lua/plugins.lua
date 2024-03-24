@@ -77,6 +77,8 @@ return {
           "gopls",
           -- typst
           "typst-lsp",
+          -- python
+          "pyright",
         },
 
         auto_update = false,

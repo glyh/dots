@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Simulink
+Exec=/home/lyh/.MathWorks/ServiceHost/mechrevo/v2024.2.1.0/bin/glnxa64/OpenMathWorksDesktopApp %u
+StartupNotify=false
+MimeType=x-scheme-handler/mw-simulink;
