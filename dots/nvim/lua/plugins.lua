@@ -218,15 +218,10 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
-    opts = {
-      extensions_list = { "themes", "terms" },
-    },
-  },
-  {
-    "nvim-telescope/telescope-ui-select.nvim",
     config = function()
-      require("telescope").load_extension "ui-select"
+      require "configs.telescope"
     end,
   },
   -- }}}
