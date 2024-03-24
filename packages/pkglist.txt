@@ -94,6 +94,7 @@ thorium-browser-bin
 tofi
 tree
 ttf-firacode-nerd
+typora-free-bin
 typst
 udiskie
 unzip
