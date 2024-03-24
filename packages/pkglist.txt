@@ -65,6 +65,7 @@ oils-for-unix
 onlyoffice-bin
 openssh
 otf-firamono-nerd
+p7zip
 page-git
 pamixer
 pavucontrol
