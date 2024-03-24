@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 DOT_PATH="$(realpath $0 | xargs dirname)"
 
-su -c "ln -sfnv $DOT_PATH/sudo/sudoers /etc/sudoers"
+su -c "chown root $DOT_PATH/sudo/sudoers && ln -sfnv $DOT_PATH/sudo/sudoers /etc/sudoers"
 
 if ! pacman -Qi oils-for-unix > /dev/null; then
   cd $DOT_PATH/packages/oils-for-unix/ && makepkg -si --noconfirm
