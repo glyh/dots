@@ -96,7 +96,6 @@ ttf-firacode-nerd
 typora-free-bin
 typst
 udiskie
-unzip
 uuplugin-bin
 v2raya-bin
 ventoy-bin
