@@ -83,6 +83,7 @@ ripgrep
 rlwrap
 rsync
 rustup
+sioyek
 slurp
 starship
 steam
@@ -104,7 +105,5 @@ waybar
 wget
 wl-clipboard
 yay-bin
-zathura
-zathura-pdf-mupdf
 zoxide
 zvm

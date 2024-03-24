@@ -1,6 +1,6 @@
 [Default Applications]
-application/pdf=zathura.desktop
-application/epub+zip=zathura.desktop
+application/pdf=sioyek.desktop
+application/epub+zip=sioyek.desktop
 text/plain=nvim.desktop
 x-scheme-handler/baiduyunguanjia=baidunetdisk.desktop
 text/html=thorium-browser.desktop
