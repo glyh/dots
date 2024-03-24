@@ -87,7 +87,6 @@ sioyek
 slurp
 starship
 steam
-sudo
 tealdeer
 texlive-full
 thorium-browser-bin
