@@ -16,6 +16,17 @@ proc ensurePacman(package) {
   }
 }
 
+proc pinPacman(package, version) {
+  echo "Pining package $package to $version"
+  if ! pacman -Qi $package > /dev/null {
+    sudo downgrade \
+      --ala-only \
+      --ignore always \
+      "$package=$version" \
+      -- --asdeps --noconfirm
+  }
+}
+
 proc ensureAUR(package) {
   echo "Ensuring AUR package $package is installed"
   if ! pacman -Qi $package > /dev/null {
@@ -174,13 +185,9 @@ proc dotsLanguages() {
   yes | zvm use 0.11.0
 
   # CUDA
-  if ! pacman -Qi cuda > /dev/null {
-    sudo downgrade \
-      --ala-only \
-      --ignore always \
-      'gcc11=11.3.0-5' 'cuda=11.8.0-1' 'gcc11-libs=11.3.0-5'\
-      -- --asdeps --noconfirm
-  }
+  pinPacman gcc11-libs 11.3.0-5
+  pinPacman gcc11 11.3.0-5
+  pinPacman cuda 11.8.0-1
 }
 
 proc dotsRclone() {
