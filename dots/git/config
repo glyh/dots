@@ -26,7 +26,7 @@
 	t = difftool
 	p = pull
 	u = push
-	g = clone
+	g = clone --filter=blob:none
 	b = branch
 	r = restore
 	root = rev-parse --show-toplevel
