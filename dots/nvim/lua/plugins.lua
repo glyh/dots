@@ -270,7 +270,7 @@ return {
       require("which-key").register({
         ["p"] = { "<cmd>MarkdownPreviewToggle<CR>", "Toggle markdown preview" },
       }, { prefix = "<localleader>" })
-      vim.g.mkdp_browser = "mercury-browser"
+      vim.g.mkdp_browser = "thorium-browser"
       vim.g.mkdp_theme = "dark"
     end,
     ft = "markdown",
