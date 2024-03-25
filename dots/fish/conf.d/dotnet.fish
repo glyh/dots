@@ -3,3 +3,4 @@ if not type -q dotnet
 end
 
 set -gxa PATH ~/.dotnet/tools
+set -gx NUGET_PACKAGES $XDG_CACHE_HOME"/NuGetPackages"

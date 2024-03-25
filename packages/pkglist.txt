@@ -10,7 +10,6 @@ bottles
 bottom
 choosenim-bin
 clang
-clojure
 dbeaver
 direnv
 downgrade
@@ -24,7 +23,6 @@ fcitx5-gtk
 fcitx5-pinyin-custom-pinyin-dictionary
 fcitx5-qt
 fish
-flutter
 fzf
 gammastep
 gimp
@@ -65,7 +63,7 @@ oils-for-unix
 onlyoffice-bin
 openssh
 otf-firamono-nerd
-p7zip-full-bin
+p7zip
 page-git
 pamixer
 pavucontrol

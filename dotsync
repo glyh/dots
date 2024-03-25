@@ -197,6 +197,10 @@ proc dotsLanguages() {
   pinPacman gcc11-libs 11.3.0-5
   pinPacman gcc11 11.3.0-5
   pinPacman cuda 11.8.0-1
+
+  # FSharp
+  mkdir -p ~/.nuget
+  ln -sfnv $dotPath/dots/NuGet $HOME/.nuget/NuGet
 }
 
 proc dotsServices() {

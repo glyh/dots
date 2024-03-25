@@ -7,8 +7,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     config = function(_, opts)
-      -- opts.sources[#opts.sources + 1] = { name = 'cmdline' }
-      -- opts.sources[#opts.sources + 1] = { name = 'conjure' }
+      opts.sources[#opts.sources + 1] = { name = "conjure" }
       local cmp = require "cmp"
       cmp.setup(opts)
       cmp.setup.cmdline({ "/", "?" }, {
@@ -29,9 +28,7 @@ return {
     end,
     dependencies = {
       "hrsh7th/cmp-cmdline",
-      -- { 'PaterJason/cmp-conjure',
-      --   dependencies = 'Olical/conjure',
-      -- },
+      { "PaterJason/cmp-conjure", dependencies = "Olical/conjure" },
     },
   },
   {
@@ -62,23 +59,33 @@ return {
         -- a list of all tools you want to ensure are installed upon
         -- start
         ensure_installed = {
-          -- lua stuff
+          -- Lua {{{
           "lua-language-server",
           "stylua",
-          -- c/cpp stuff
+          -- }}}
+          -- C/Cpp {{{
           "clangd",
           "clang-format",
-          -- clojure stuff,
+          -- }}}
+          -- Clojure {{{
           -- 'clj-kondo',
           -- 'clojure-lsp',
-          -- zig
+          -- }}}
+          -- Zig {{{
           "zls",
-          -- go
+          -- }}}
+          -- Go {{{
           "gopls",
-          -- typst
+          -- }}}
+          -- Typst {{{
           "typst-lsp",
-          -- python
+          -- }}}
+          -- Python {{{
           "pyright",
+          -- }}}
+          -- Fsharp {{{
+          "fsautocomplete",
+          -- }}}
         },
 
         auto_update = false,
@@ -90,16 +97,9 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "c",
-        "go",
-        "lua",
-        "dart",
-        "cuda",
-        -- 'clojure',
-      },
-    },
+    config = function()
+      require "configs.treesitter"
+    end,
   },
   {
     "nvim-tree/nvim-tree.lua",
@@ -300,29 +300,35 @@ return {
   -- Clojure {{{
   {
     "eraserhd/parinfer-rust",
-    enabled = false,
     ft = "clojure",
     build = "cargo build --release",
   },
   {
     "Olical/conjure",
-    enabled = false,
     ft = "clojure",
     config = function()
       require "configs.conjure"
     end,
   },
   {
-    "guns/vim-sexp",
+    "julienvincent/nvim-paredit",
+    config = function()
+      require("nvim-paredit").setup()
+    end,
+  },
+  -- }}}
+  -- FSharp {{{
+  {
+    "ionide/Ionide-vim",
+    ft = "fsharp",
     enabled = false,
-    ft = "clojure",
-    dependencies = "tpope/vim-sexp-mappings-for-regular-people",
   },
   -- }}}
   -- Flutter {{{
   {
     "akinsho/flutter-tools.nvim",
     ft = "dart",
+    enabled = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
