@@ -29,7 +29,7 @@
   "nvim-lspconfig": { "branch": "master", "commit": "6e5c78ebc9936ca74add66bda22c566f951b6ee5" },
   "nvim-paredit": { "branch": "master", "commit": "844b032fab0921a50a21876ac47f19d795b22291" },
   "nvim-tree.lua": { "branch": "master", "commit": "e508bdc4184c33c6d9705c503cf7f0e029601788" },
-  "nvim-treesitter": { "branch": "master", "commit": "1c3fb9eac2a04230e4af23715fa2c190cbeacd70" },
+  "nvim-treesitter": { "branch": "master", "commit": "7f3179315959bd762abd0f8dbe0361db805fb2d4" },
   "nvim-web-devicons": { "branch": "master", "commit": "3ee60deaa539360518eaab93a6c701fe9f4d82ef" },
   "overseer.nvim": { "branch": "master", "commit": "b04b0b105c07b4f02b3073ea3a98d6eca90bf152" },
   "parinfer-rust": { "branch": "master", "commit": "0e4d52e712641ad351a1bfe6cee3d34d63ed087b" },
