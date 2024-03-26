@@ -154,7 +154,8 @@ return {
   {
     "ahmedkhalf/project.nvim",
     -- BUG: project.nvim doesn't run well if we lazy load it
-    enabled = false,
+    -- enabled = false,
+    lazy = false,
     config = function()
       require("project_nvim").setup {
         patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "project.clj", "build.zig" },
