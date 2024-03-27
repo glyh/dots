@@ -2,10 +2,10 @@ adobe-source-han-sans-cn-fonts
 adobe-source-han-serif-cn-fonts
 aria2
 ariang-allinone-bin
-atool
 base
 base-devel
 bcachefs-tools
+bear
 bottles
 bottom
 choosenim-bin

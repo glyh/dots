@@ -121,7 +121,9 @@ proc dotsNix() {
 }
 
 proc dotsSteam() {
-  mkdir -p $XDG_DATA_HOME/SteamHome
+  var steamHome = "$XDG_DATA_HOME/SteamHome"
+  mkdir -p $steamHome/.steam/steam
+  ln -sfnv $dotPath/dots/steam/steam_dev.cfg $steamHome/.steam/steam/steam_dev.cfg
 }
 
 proc dotsTools() {

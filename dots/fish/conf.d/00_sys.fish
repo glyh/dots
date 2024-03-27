@@ -60,7 +60,7 @@ set -gx MOZ_ENABLE_WAYLAND   1
 
 # IME
 # fcitx5 recommends unset GTK_IM_MODULE
-set -gx GTK_IM_MODULE            fcitx
+# set -gx GTK_IM_MODULE            fcitx
 set -gx XMODIFIERS               \@im=fcitx
 
 # GTK themes
