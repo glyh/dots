@@ -55,8 +55,6 @@ proc dotsBase() {
   ln -sfnv $dotPath/dots/fish $XDG_CONFIG_HOME/fish
   dotsBash
   ln -sfnv $dotPath/dots/git $XDG_CONFIG_HOME/git
-  mkdir -p ~/.ssh
-  ln -sfnv $dotPath/dots/ssh/config ~/.ssh/config
   ln -sfnv $dotPath/dots/readline $XDG_CONFIG_HOME/readline
   ln -sfnv $dotPath/dots/nvim $XDG_CONFIG_HOME/nvim
 }
@@ -68,6 +66,9 @@ proc dotsKitty() {
 proc dotsCredential() {
   mkdir -p $credentialPath
   cd $credentialPath {
+    # SSH
+    ln -sfnv $credentialPath/ssh ~/.ssh
+    ln -sfnv $dotPath/dots/ssh/config ~/.ssh/config
     # Thorium
     mkdir -p thorium
     ln -sfnv $credentialPath/thorium $XDG_CONFIG_HOME/thorium
@@ -244,14 +245,13 @@ cd $dotPath {
   addGroups
 
   dotsEtc
+  dotsCredential
   mkdir -p $XDG_CONFIG_HOME
   dotsBase
   dotsDe
   dotsTools
   dotsLanguages
   dotsServices
-
-  dotsCredential
 
   writeMetaData
 }
