@@ -46,7 +46,6 @@ light
 linux
 linux-firmware
 logseq-desktop-wayland-bin
-lxsession
 ly
 mako
 man-db
