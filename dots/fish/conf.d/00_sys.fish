@@ -1,5 +1,5 @@
 # Basic info
-set -gx GITHUB               githubfast.com
+# set -gx GITHUB               gitclone.com/github.com
 # See https://coderschool.cn/3724.html
 
 # Nvidia Drivers

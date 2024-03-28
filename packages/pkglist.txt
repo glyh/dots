@@ -10,6 +10,7 @@ bottles
 bottom
 choosenim-bin
 clang
+corkscrew
 dbeaver
 direnv
 downgrade
