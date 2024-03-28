@@ -1,0 +1,5 @@
+Host github.com
+    Hostname github.com
+    ServerAliveInterval 55
+    ForwardAgent yes
+    ProxyCommand corkscrew 127.0.0.1 20171 %h %p
